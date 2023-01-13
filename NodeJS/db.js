@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://hajaina:mdpprom13@cluster0.rcc3ot6.mongodb.net/CrudDB', (err) => {
+mongoose.connect('mongodb+srv://hajaina:mdpprom13@cluster0.rcc3ot6.mongodb.net/mean', (err) => {
     if (!err)
         console.log('MongoDB connection succeeded.');
     else
