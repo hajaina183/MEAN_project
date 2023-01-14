@@ -152,4 +152,9 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+    deconnexion() {
+      localStorage.removeItem('adminSession');
+      this.router.navigate(['../']);
+    }
 }
