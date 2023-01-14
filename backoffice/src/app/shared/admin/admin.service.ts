@@ -18,6 +18,10 @@ export class AdminService {
     return this.http.post(this.baseURL, emp);
   }
 
+  traitementLoginAdmin(emp: Admin) {
+    return this.http.post(this.baseURL + `/traitementLogin`, emp);
+  }
+
   getAdminList() {
     return this.http.get(this.baseURL);
   }

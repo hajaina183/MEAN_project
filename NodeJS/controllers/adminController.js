@@ -35,6 +35,26 @@ router.post('/', (req, res) => {
     });
 });
 
+router.post('/traitementLogin', (req, res) => {
+    var adm = new Admin({
+        email: req.body.email,
+        mdp: req.body.mdp
+    });
+    Admin.find({ email: req.body.email, mdp: req.body.mdp }, function (err, docs) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            console.log("Second function call : ", docs);
+            if(docs.length == 1) {
+                res.send(docs[0])
+            } else {
+                res.send(docs[0])
+            }
+        }
+    });
+});
+
 router.put('/:id', (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id : ${req.params.id}`);
