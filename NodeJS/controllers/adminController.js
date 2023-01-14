@@ -45,7 +45,6 @@ router.post('/traitementLogin', (req, res) => {
             console.log(err);
         }
         else{
-            console.log("Second function call : ", docs);
             if(docs.length == 1) {
                 res.send(docs[0])
             } else {

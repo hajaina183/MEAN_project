@@ -16,7 +16,6 @@ import { HttpErrorResponse } from "@angular/common/http";
 export class LoginComponent implements OnInit {
   email!: string;
   mdp!: string;
-  adminRep!: any;
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
@@ -27,20 +26,12 @@ export class LoginComponent implements OnInit {
     adm.email = this.email;
     adm.mdp = this.mdp;
     this.adminService.traitementLoginAdmin(adm).subscribe((res) => {
-      this.adminRep = res;
-      /*if(!res.toString().includes("ERROR")) {
-        this.router.navigate(['../acceuil']);
-      }*/ 
       if(res) {
         this.router.navigate(['../acceuil']);
       } else {
         alert("Compte introuvable")
       }
     })
-  }
-
-  test() {
-    console.log("coucou");
   }
 
 }
