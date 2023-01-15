@@ -50,7 +50,7 @@ export class InscriptionComponent implements OnInit {
     cli.mdp = this.mdp;
     this.clientService.traitementLogin(cli).subscribe((res) => {
       if(res) {
-        this.router.navigate(['../acceuil']);
+        this.router.navigate(['../navbar']);
       } else {
         alert("Compte introuvable")
       }
