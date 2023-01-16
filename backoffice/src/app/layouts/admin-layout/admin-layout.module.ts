@@ -14,9 +14,13 @@ import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,9 +58,17 @@ export class DashboardComponent implements OnInit {
       return "rgb(" + r + ", " + g + ", " + b + ")";
     }
   }
-  constructor() { }
+  constructor(
+    private common : CommonService
+  ) { }
 
   ngOnInit() {
+    // spinner
+    this.common.showSpinner();
+    setTimeout(()=>{
+      this.common.hideSpinner();
+    },7000)
+        
     this.chartColor = "#FFFFFF";
     this.canvas = document.getElementById("bigDashboardChart");
     this.ctx = this.canvas.getContext("2d");
