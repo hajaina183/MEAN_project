@@ -23,45 +23,52 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    var adm = new Admin({
+    var rep = new ReparationVoiture({
         nom: req.body.nom,
+        prenom: req.body.prenom,
+        adresse: req.body.adresse,
+        tel: req.body.tel,
         email: req.body.email,
-        mdp: req.body.mdp,
-        grade: req.body.grade,
     });
-    adm.save((err, doc) => {
+    rep.save((err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in ReparationVoiture Save :' + JSON.stringify(err, undefined, 2)); }
     });
 });
 
 
-router.post('/updatetVoiture', (req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-        return res.status(400).send(`No record with given id : ${req.params.id}`);
-
-    var voi = {
+router.put('/insertVoiture', (req, res) => {
+    console.log(req.body);
+    var voi = new ReparationVoiture({
         nom: req.body.nom,
         email: req.body.email 
-
-    };
-    console.log("nom "+req.body.nom);
-    console.log("email "+req.body.email);
-    voi.ReparationVoiture.updateOne({ email: req.body.email, nom: req.body.nom },
-        {"nom" : req.body.nom , "email": req.body.email },
-        {
-            $push:{
-                "voiture":{
-                    "daty":"2023-47-7",
-                    "numero":"1236wwt",
-                    "reparation":{
-                        "materiel" : "pneu",
-                        "prix":"25000"
+    });
+    const filter = { nom : req.body.nom , email: req.body.email };
+    const updateDoc = {
+        $push:{
+            voiture:{
+                modele: "BMW",
+                numero: "1236wwt",
+                diagnostique: 1,
+                reparation: [
+                    {
+                        daty: "2023-47-7",
+                        type: "pneu",
+                        prix: 25000,
+                        etat: 0
                     }
-                }
+                ]
             }
-        }
-    );
+        },
+      };
+        ReparationVoiture.updateOne(filter, updateDoc, function (err, docs) {
+            if (err){
+                res.send(err);
+            }
+            else{
+                res.send(docs);
+            }
+        });
 });
 
 

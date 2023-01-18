@@ -6,7 +6,7 @@ var ReparationVoiture = mongoose.model('ReparationVoiture', {
     adresse: { type: String },
     tel: { type: String },
     email : {type: String},
-    mdp : { type: String }
+    voiture : { type: Array }
 });
 
 module.exports = { ReparationVoiture };
