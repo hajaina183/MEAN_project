@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/insertPersoVoiture', (req, res) => {
     var rep = new ReparationVoiture({
         nom: req.body.nom,
         prenom: req.body.prenom,
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.put('/insertVoiture', (req, res) => {
+/*router.put('/insertVoiture', (req, res) => {
     console.log(req.body);
     var voi = new ReparationVoiture({
         nom: req.body.nom,
@@ -69,7 +69,7 @@ router.put('/insertVoiture', (req, res) => {
                 res.send(docs);
             }
         });
-});
+});*/
 
 
 

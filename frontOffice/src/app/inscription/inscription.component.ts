@@ -2,13 +2,18 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../shared/client/client.service';
 import { Client } from '../shared/client/client.model';
+import { ReparationVoiture } from '../shared/reparationVoiture/reparationVoiture.model';
+import { ReparationVoitureService } from '../shared/reparationVoiture/reparation-voiture.service';
 
 
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.css'],
-  providers: [ClientService]
+  providers: [
+    ClientService,
+    ReparationVoitureService
+  ]
 })
 export class InscriptionComponent implements OnInit {
   name!: string;
@@ -17,7 +22,7 @@ export class InscriptionComponent implements OnInit {
   tel!: string;
   email!: string;
   mdp!: string;
-  constructor(private clientService: ClientService, private router: Router) { }
+  constructor(private clientService: ClientService,private reparationVoitureService: ReparationVoitureService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,12 +36,25 @@ export class InscriptionComponent implements OnInit {
     cli.tel = this.tel;
     cli.email = this.email;
     cli.mdp = this.mdp;
+
+    var reparationVoiture = new ReparationVoiture();
+    reparationVoiture.nom = this.name;
+    reparationVoiture.prenom = this.lastName;
+    reparationVoiture.adresse = this.adresse;
+    reparationVoiture.tel = this.tel;
+    reparationVoiture.email = this.email;
+
+
+
     this.clientService.postClient(cli).subscribe((res) => {
       if(res) {
         console.log("ouiiiii");
         this.clientService.envoieEmail(cli).subscribe((res) => {
-          alert("mail LASA");
-        })
+          this.reparationVoitureService.insertVoiture(reparationVoiture).subscribe((res) => {
+            alert("mail LASA");
+          })
+          
+       })
       } else {
         alert("Compte introuvable");
       }
