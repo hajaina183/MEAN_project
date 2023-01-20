@@ -14,6 +14,9 @@ import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 
+import { VoitureDiagnostiqueComponent } from './voiture-diagnostique/voiture-diagnostique.component';
+import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
+
 const routes: Routes =[
   { path: "", component: LoginComponent},
   {
@@ -105,7 +108,27 @@ const routes: Routes =[
         component: UpgradeComponent,
       },
     ], 
-  }
+  },
+  { 
+    path: 'voiture-diagnostique',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: VoitureDiagnostiqueComponent,
+      },
+    ], 
+  },
+  { 
+    path: 'diagnostique',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: DiagnostiqueComponent,
+      },
+    ], 
+  },
 ];
 
 @NgModule({

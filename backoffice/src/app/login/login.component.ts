@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         console.log(adminLS._id); */
 
         if(this.adminResponse.grade == 0) { // atelier
-          this.router.navigate(['../acceuil']);
+          this.router.navigate(['../voiture-diagnostique']);
         } else if(this.adminResponse.grade == 1) { // financier
           this.router.navigate(['../user-profile']);
         }

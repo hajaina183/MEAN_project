@@ -10,12 +10,16 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
+import { VoitureDiagnostiqueComponent } from './voiture-diagnostique/voiture-diagnostique.component';
+import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 
 @NgModule({
   imports: [
+    NgxSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -28,7 +32,9 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    VoitureDiagnostiqueComponent,
+    DiagnostiqueComponent
 
   ],
   providers: [],

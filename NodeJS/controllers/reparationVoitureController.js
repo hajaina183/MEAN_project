@@ -25,7 +25,9 @@ router.route("/find").get(function(req, res) {
 
 router.get('/', (req, res) => {
     ReparationVoiture.find((err, docs) => {
-        if (!err) { res.send(docs); }
+        if (!err) {
+            res.send(docs); 
+        }
         else { console.log('Error in Retriving ReparationVoiture :' + JSON.stringify(err, undefined, 2)); }
     });
 });
@@ -55,18 +57,13 @@ router.post('/insertPersoVoiture', (req, res) => {
 });
 
 
-/*router.put('/insertVoiture', (req, res) => {
-    console.log(req.body);
-    var voi = new ReparationVoiture({
-        nom: req.body.nom,
-        email: req.body.email 
-    });
+router.put('/insertVoiture', (req, res) => {
     const filter = { nom : req.body.nom , email: req.body.email };
     const updateDoc = {
         $push:{
             voiture:{
-                modele: "Mercedes AMG",
-                numero: "2345 TBJ",
+                modele: req.body.modele,
+                numero: req.body.numero,
                 diagnostique: 0,
             }
         },
@@ -79,7 +76,7 @@ router.post('/insertPersoVoiture', (req, res) => {
                 res.send(docs);
             }
         });
-});*/
+});
 
 router.put('/insertVoitureReparation', (req, res) => {
     console.log(req.body.voiture[0].modele);
