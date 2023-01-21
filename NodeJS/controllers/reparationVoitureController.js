@@ -14,6 +14,10 @@ router.route("/find").get(function(req, res) {
         var repVoiture = Array;
         for (var i = 0, l = result.length; i < l; i++) {
             comm = result[i];
+            for (var j = 0, ll = comm.voiture.length; j < ll; j++) {
+                var d = comm.voiture[j];
+                console.log("voiture == "+JSON.stringify(d));
+              }
             console.log('------------------------------');
             console.log('nom : ' + comm.voiture.length);
             console.log('------------------------------');
@@ -78,22 +82,20 @@ router.put('/insertVoiture', (req, res) => {
         });
 });
 
-router.put('/insertVoitureReparation', (req, res) => {
-    console.log(req.body.voiture[0].modele);
+router.put('/insertVoitureReparation/:date/:type/:prix', (req, res) => {
     var voi = new ReparationVoiture({
-        nom: req.body.nom,
-        email: req.body.email,
         voiture: req.body.voiture
     });
-    const filter = { nom : req.body.nom , email: req.body.email , "voiture.modele": req.body.voiture[0].modele, "voiture.numero": req.body.voiture[0].numero };
+    const filter = { "voiture.modele": req.body.modele, "voiture.numero": req.body.numero };
     const updateDoc = {
         $push:{
             "voiture.$.reparation": 
                 {
-                    daty: "2023-18-1",
-                    type: "embrayage",
-                    prix: 100000,
-                    etat: 0
+                    daty: req.params.date,
+                    type: req.params.type,
+                    prix: parseInt(req.params.prix),
+                    etat: 0,
+                    paye: 0
                 }    
         },
       };
@@ -117,6 +119,39 @@ router.put('/insertVoitureReparation', (req, res) => {
                 });
             }
         });
+        
+});
+
+router.put('/terminerReparation/:date/:type', (req, res) => {
+    const filter = { 
+        "voiture.modele": req.body.modele, 
+        "voiture.numero": req.body.numero 
+    };
+    const updateDoc = {
+        $set:{
+            "voiture.$.reparation.$[element].etat": 1  
+        },
+    };
+    const arrayfiltre = {
+        arrayFilters: [
+            { 
+                "element.daty": req.params.date,
+                "element.type": req.params.type,
+                "element.etat": 0
+            } 
+        ]
+    }
+    console.log(arrayfiltre);
+    console.log(filter);
+    ReparationVoiture.updateOne(filter, updateDoc, arrayfiltre, function (err, docs) {
+        if (err){
+            console.log(err);
+            res.send(err);
+        } else {
+            //console.log(docs);
+            res.send(docs);
+        }
+    });
         
 });
 

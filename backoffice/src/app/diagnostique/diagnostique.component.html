@@ -6,7 +6,7 @@
       <div class="card card-plain">
         <div class="card-header">
           <h4 class="card-title"> Liste réparations disponibles </h4>
-          <p class="category"> Here is a subtitle for this table</p>
+          <p class="category">Glisser l'image dans le tableau "Liste réparation" pour l'ajouter</p>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -19,14 +19,16 @@
                 <th>
                   Nom
                 </th>
-                <th class="text-right">
+                <th>
                   Prix
                 </th>
               </thead>
               <tbody>
                 <tr *ngFor="let rep of reparationService.reparations">
                     <td>
-                        <img src="../assets/img/bg5.jpg" style="width: 50px; height: 50px;"/>
+                      <div (drop)="drop($event)" (dragover)="allowDrop($event)">
+                        <img src="{{'../assets/img/'+rep.type + '.jpg'}}" style="width: 50px; height: 50px;" draggable="true" (dragstart)="drag(rep.type,rep.prix)" id="drag1"/>
+                      </div>
                     </td>
                     <td>
                         {{rep.modele}}
@@ -34,7 +36,7 @@
                     <td>
                         {{rep.type}}
                     </td>
-                    <td class="text-right">
+                    <td>
                         {{rep.prix}} Ar
                     </td>
                 </tr>
@@ -47,122 +49,47 @@
     <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
+            <h4 class="card-title">Liste réparations</h4>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" (drop)="drop($event)" (dragover)="allowDrop($event)">
               <table class="table">
                 <thead class=" text-primary">
                   <th>
-                    Name
+                    Date
                   </th>
                   <th>
-                    Country
+                    type
                   </th>
                   <th>
-                    City
+                    Prix
                   </th>
-                  <th class="text-right">
-                    Salary
+                  <th>
+                    Etat
                   </th>
+                  <th></th>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let rep of reparationVoitureService.voiture.reparation">
                     <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Niger
+                      {{rep.daty}}
                     </td>
                     <td>
-                      Oud-Turnhout
-                    </td>
-                    <td class="text-right">
-                      $36,738
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Minerva Hooper
+                      {{rep.type}}
                     </td>
                     <td>
-                      Curaçao
+                      {{rep.prix}} Ar
                     </td>
                     <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-right">
-                      $23,789
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Sage Rodriguez
+                      <div *ngIf="rep.etat == 0">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </div>
+                      <div *ngIf="rep.etat == 1">
+                        <i class="now-ui-icons ui-1_check"></i>
+                      </div>
                     </td>
                     <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-right">
-                      $56,142
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-right">
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-right">
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-right">
-                      $78,615
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Jon Porter
-                    </td>
-                    <td>
-                      Portugal
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-right">
-                      $98,615
+                      <button class="btn btn-primary btn-block" (click)="terminer(rep.daty,rep.type)" style="width: 100px;">Terminer</button>
                     </td>
                   </tr>
                 </tbody>

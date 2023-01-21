@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { AdminService } from '../shared/admin/admin.service';
 import { Admin } from '../shared/admin/admin.model';
-
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
   email!: string;
   mdp!: string;
   adminResponse!: any;
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(
+    private adminService: AdminService, 
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -44,7 +48,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['../user-profile']);
         }
       } else {
-        alert("Compte introuvable")
+        //alert("Compte introuvable");
+        this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Compte introuvable', '', {
+          timeOut: 8000,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: "alert alert-danger alert-with-icon",
+          positionClass: 'toast-top-center'
+        });
       }
     })
   }

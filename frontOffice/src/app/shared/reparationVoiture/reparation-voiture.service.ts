@@ -6,8 +6,8 @@ import { ReparationVoiture } from './reparationVoiture.model';
   providedIn: 'root'
 })
 export class ReparationVoitureService {
-  selectedClient: ReparationVoitureService;
-  ReparationVoiture: ReparationVoiture[];
+  selectedClient!: ReparationVoitureService;
+  ReparationVoiture!: ReparationVoiture[];
   
   readonly baseURL = 'http://localhost:3000/reparationVoiture';
 

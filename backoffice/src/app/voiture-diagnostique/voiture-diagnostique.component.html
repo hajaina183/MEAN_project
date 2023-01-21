@@ -24,7 +24,7 @@
                     {{rep.voiture[0].modele}}
                   </td>
                   <td>
-                    <a [routerLink]="['/diagnostique']" [queryParams]="{ modele: rep.voiture[0].modele}">{{rep.voiture[0].numero}}</a>
+                    <a [routerLink]="['/diagnostique']" [queryParams]="{ modele: rep.voiture[0].modele, numero: rep.voiture[0].numero, client: rep.nom}">{{rep.voiture[0].numero}}</a>
                   </td>
                 </tr>
               </tbody>

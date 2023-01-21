@@ -20,6 +20,10 @@ export class ReparationService {
     return this.http.get(this.baseURL);
   }
 
+  getReparationListModele(modele: String) {
+    return this.http.get(this.baseURL + `/${modele}`);
+  }
+
   putReparation(rep: Reparation) {
     return this.http.put(this.baseURL + `/${rep._id}`, rep);
   }

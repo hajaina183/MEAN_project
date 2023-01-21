@@ -12,6 +12,13 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:modele', (req, res) => {
+    Reparation.find({ modele: req.params.modele }, function (err, docs) {
+        if (!err) { res.send(docs); }
+        else { console.log('Error in Retriving Reparations :' + JSON.stringify(err, undefined, 2)); }
+    });
+});
+
 router.get('/:id', (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id : ${req.params.id}`);
