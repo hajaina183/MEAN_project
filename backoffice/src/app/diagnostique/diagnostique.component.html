@@ -71,16 +71,16 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let rep of reparationVoitureService.voiture.reparation">
-                    <td>
+                    <td *ngIf="rep.paye == 0">
                       {{rep.daty}}
                     </td>
-                    <td>
+                    <td *ngIf="rep.paye == 0">
                       {{rep.type}}
                     </td>
-                    <td>
+                    <td *ngIf="rep.paye == 0">
                       {{rep.prix}} Ar
                     </td>
-                    <td>
+                    <td *ngIf="rep.paye == 0">
                       <div *ngIf="rep.etat == 0">
                         <i class="now-ui-icons ui-1_simple-remove"></i>
                       </div>
@@ -88,7 +88,7 @@
                         <i class="now-ui-icons ui-1_check"></i>
                       </div>
                     </td>
-                    <td>
+                    <td *ngIf="rep.paye == 0">
                       <button class="btn btn-primary btn-block" (click)="terminer(rep.daty,rep.type)" style="width: 100px;">Terminer</button>
                     </td>
                   </tr>
