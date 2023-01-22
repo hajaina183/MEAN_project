@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="ajout-voiture.component.css" >
+<div class="formbold-main-wrapper">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="formbold-form-wrapper">
+      <form action="https://formbold.com/s/FORM_ID" method="POST">
+          <div class="formbold-input-flex">
+            <div>
+                <label for="firstname" class="formbold-form-label"> Nom </label>
+                <input type="text" name="nom" id="firstname" [(ngModel)]="nom" value={{nom}} class="formbold-form-input" readonly />
+            </div>
+            <div>
+                <label for="lastname" class="formbold-form-label">Prenom</label>
+                <input type="text" name="lastname" id="lastname" value={{prenom}} class="formbold-form-input"  readonly/>
+            </div>
+          </div>
+  
+          <div class="formbold-input-flex">
+            <div>
+                <label for="email" class="formbold-form-label"> Mail </label>
+                <input  type="email" name="email" [(ngModel)]="email" id="email" value={{email}} class="formbold-form-input"  readonly />
+            </div>
+            <div>
+                <label for="phone" class="formbold-form-label"> Phone </label>
+                <input  type="text" name="phone"  id="phone" value={{tel}} class="formbold-form-input"  readonly/>
+            </div>
+           
+          </div>
+
+          <div class="formbold-input-flex">
+            <div>
+                <label for="phone" class="formbold-form-label"> Adresse </label>
+                <input  type="text" name="adresse"   value={{adresse}} class="formbold-form-input"  readonly/>
+            </div>
+            <div>
+                <label for="phone" class="formbold-form-label"> Phone </label>
+                <input  type="text" name="phone"  [(ngModel)]="tel" value={{tel}} class="formbold-form-input"  readonly/>
+            </div>
+          </div>
+
+          <div class="formbold-input-flex">
+            <div>
+                <label for="phone" class="formbold-form-label"> Marque Voiture </label>
+                
+                <select class="formbold-form-input" name="marque" [(ngModel)]="marque" >
+                    <option value="default">----</option>
+                    <option *ngFor="let player of marqueVoitureList" [value]="player">
+                        {{player.marque}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <label for="phone" class="formbold-form-label"> N° Voiture </label>
+                <input  type="text" name="numero"  [(ngModel)]="numero"   class="formbold-form-input"  />
+            </div>
+          </div>
+  
+          <div class="formbold-btn">
+            <input type="button" class="button" (click)="insertVoitureClient()" value="Enregistrer">
+          </div>
+          
+      </form>
+    </div>
+  </div>
+   

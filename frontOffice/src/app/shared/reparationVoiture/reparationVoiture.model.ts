@@ -5,4 +5,6 @@ export class ReparationVoiture {
     adresse: string;
     tel: string;
     email: string;
+    modele: string;
+    numero: string;
 }

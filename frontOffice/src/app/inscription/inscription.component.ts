@@ -22,6 +22,7 @@ export class InscriptionComponent implements OnInit {
   tel!: string;
   email!: string;
   mdp!: string;
+  clientResponse!: any;
   constructor(private clientService: ClientService,private reparationVoitureService: ReparationVoitureService, private router: Router) { }
 
   ngOnInit(): void {
@@ -49,11 +50,13 @@ export class InscriptionComponent implements OnInit {
     this.clientService.postClient(cli).subscribe((res) => {
       if(res) {
         console.log("ouiiiii");
-        this.clientService.envoieEmail(cli).subscribe((res) => {
-          this.reparationVoitureService.insertVoiture(reparationVoiture).subscribe((res) => {
-            alert("mail LASA");
+        this.reparationVoitureService.insertVoiture(reparationVoiture).subscribe((res)=> {
+          if(res) {
+            console.log("atoo");
+            this.clientService.envoieEmail(cli).subscribe((res) => {
+            console.log("tongaaaaaa");
           })
-          
+        }
        })
       } else {
         alert("Compte introuvable");
@@ -69,6 +72,11 @@ export class InscriptionComponent implements OnInit {
     this.clientService.traitementLogin(cli).subscribe((res) => {
       if(res) {
         this.router.navigate(['../navbar']);
+       localStorage.setItem('email',cli.email)
+            this.clientResponse = res;
+            // set local storage
+            localStorage.setItem('adminSession', JSON.stringify(this.clientResponse));
+    
       } else {
         alert("Compte introuvable")
       }

@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    AjoutVoitureComponent
   ],
   imports: [
     BrowserModule,
