@@ -1,0 +1,55 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Liste voitures dans le garage</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                    Modèle
+                </th>
+                <th>
+                    Numéro
+                </th>
+                <th>
+                    Réparation
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rep of reparationVoitureService.reparationVoitures; let index = index;">
+                  <td>
+                    {{rep.voiture[0].modele}}
+                  </td>
+                  <td>
+                    <a [routerLink]="['/details']" [queryParams]="{ modele: rep.voiture[0].modele, numero: rep.voiture[0].numero}">{{rep.voiture[0].numero}}</a>
+                  </td>
+                  <td>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-Success" [ngStyle]="{'width': rep.pourcentage + '%'}"> {{rep.pourcentage}} % </div>
+                      </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen] = "true"
+  name="root"
+>
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

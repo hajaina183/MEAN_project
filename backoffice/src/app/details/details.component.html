@@ -1,0 +1,58 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Liste réparations</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    Date
+                  </th>
+                  <th>
+                    type
+                  </th>
+                  <th>
+                    Prix
+                  </th>
+                  <th>
+                    Etat
+                  </th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rep of reparationVoitureService.voiture.reparation">
+                    <td>
+                      {{rep.daty}}
+                    </td>
+                    <td>
+                      {{rep.type}}
+                    </td>
+                    <td>
+                      {{rep.prix}} Ar
+                    </td>
+                    <td>
+                      <div *ngIf="rep.etat == 0">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </div>
+                      <div *ngIf="rep.etat == 1">
+                        <i class="now-ui-icons ui-1_check"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-block" (click)="terminer(rep.daty,rep.type)" style="width: 100px;">Terminer</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

@@ -16,6 +16,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { VoitureDiagnostiqueComponent } from './voiture-diagnostique/voiture-diagnostique.component';
 import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
+import { VoitureGarageComponent } from './voiture-garage/voiture-garage.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
     AdminLayoutComponent,
     LoginComponent,
     VoitureDiagnostiqueComponent,
-    DiagnostiqueComponent
+    DiagnostiqueComponent,
+    VoitureGarageComponent,
+    DetailsComponent
 
   ],
   providers: [],

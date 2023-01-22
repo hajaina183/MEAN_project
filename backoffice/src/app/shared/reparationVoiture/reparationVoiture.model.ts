@@ -6,4 +6,5 @@ export class ReparationVoiture {
     tel: string;
     email: string;
     voiture: any[] = [];
+    pourcentage: Number;
 }

@@ -16,6 +16,8 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
 
 import { VoitureDiagnostiqueComponent } from './voiture-diagnostique/voiture-diagnostique.component';
 import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
+import { VoitureGarageComponent } from './voiture-garage/voiture-garage.component';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes =[
   { path: "", component: LoginComponent},
@@ -126,6 +128,26 @@ const routes: Routes =[
       {
         path: '',
         component: DiagnostiqueComponent,
+      },
+    ], 
+  },
+  { 
+    path: 'voiture-garage',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: VoitureGarageComponent,
+      },
+    ], 
+  },
+  { 
+    path: 'details',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: DetailsComponent,
       },
     ], 
   },
