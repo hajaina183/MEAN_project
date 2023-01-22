@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReparationVoiture } from './reparationVoiture.model';
 import { ReparVoiture } from './repar-voiture.model';
+import { Voiture } from './voiture.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { ReparVoiture } from './repar-voiture.model';
 export class ReparationVoitureService {
   selectedClient!: ReparationVoitureService;
   ReparationVoiture!: ReparationVoiture[];
+  voitures!: Voiture[];
   
   readonly baseURL = 'http://localhost:3000/reparationVoiture';
 
@@ -29,6 +31,10 @@ export class ReparationVoitureService {
   insertVoiture(rep: ReparationVoiture) {
     return this.http.post(this.baseURL + `/insertPersoVoiture`, rep);
   }
+  listeVoiture(emp: ReparationVoiture){
+    return this.http.put(this.baseURL + `/listeVoiturePerso`,emp);
+  }
+
 
   putClient(emp: ReparationVoiture) {
     return this.http.put(this.baseURL + `/${emp._id}`, emp);

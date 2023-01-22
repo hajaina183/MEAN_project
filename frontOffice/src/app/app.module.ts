@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
+import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     InscriptionComponent,
-    AjoutVoitureComponent
+    AjoutVoitureComponent,
+    ListeVoitureComponent
   ],
   imports: [
     BrowserModule,

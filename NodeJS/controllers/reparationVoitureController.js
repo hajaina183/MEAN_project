@@ -27,12 +27,29 @@ router.route("/find").get(function(req, res) {
     });
   });
 
-router.get('/', (req, res) => {
-    ReparationVoiture.find((err, docs) => {
-        if (!err) {
+  router.put('/listeVoiturePerso', (req, res) => {
+    ReparationVoiture.find({ nom: req.body.nom, email: req.body.email }, function (err, docs) {
+        if (!err) 
+        { 
             res.send(docs); 
         }
-        else { console.log('Error in Retriving ReparationVoiture :' + JSON.stringify(err, undefined, 2)); }
+        else{
+            if(docs.length == 1) {
+                res.send(docs[0])
+            } else {
+                res.send(docs[0])
+            }
+        }
+    });
+});
+
+router.get('/:id', (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+        ReparationVoiture.findById(req.params.id, (err, doc) => {
+        if (!err) { res.send(doc); }
+        else { console.log('Error in Retriving Admin :' + JSON.stringify(err, undefined, 2)); }
     });
 });
 
@@ -81,6 +98,9 @@ router.put('/insertVoiture', (req, res) => {
             }
         });
 });
+
+
+
 
 router.put('/insertVoitureReparation/:date/:type/:prix', (req, res) => {
     var voi = new ReparationVoiture({

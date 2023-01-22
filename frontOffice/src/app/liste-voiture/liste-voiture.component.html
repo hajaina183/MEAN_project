@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<table id="customers">
+  <tr>
+    <th>Modele Voiture</th>
+    <th>Numero voiture</th>
+    <th>Etat</th>
+  </tr>
+  
+  <tr *ngFor="let voiture of reparationVoitureService.voitures ; let iteration = index ">
+    <td>{{voiture.modele}}</td>
+    <td>{{voiture.numero}}</td>
+    <td class="wrapper" *ngIf="voiture.diagnostique == 0">
+      <button>
+        <span>Depanner</span>
+      </button>
+
+    </td>
+    <td *ngIf=" voiture.diagnostique == 1">
+        En reparation
+    </td>
+    <td *ngIf=" voiture.diagnostique == 2">
+        En attente
+    </td>
+   
+  </tr>
+  
+  
+</table>
