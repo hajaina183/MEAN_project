@@ -71,12 +71,12 @@ export class InscriptionComponent implements OnInit {
     cli.mdp = this.mdp;
     this.clientService.traitementLogin(cli).subscribe((res) => {
       if(res) {
+        localStorage.setItem('email',cli.email)
+        this.clientResponse = res;
+        // set local storage
+        localStorage.setItem('adminSession', JSON.stringify(this.clientResponse));
+        //console.log(this.clientResponse._id);
         this.router.navigate(['../navbar']);
-       localStorage.setItem('email',cli.email)
-            this.clientResponse = res;
-            // set local storage
-            localStorage.setItem('adminSession', JSON.stringify(this.clientResponse));
-    
       } else {
         alert("Compte introuvable")
       }

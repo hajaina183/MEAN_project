@@ -4,8 +4,8 @@ import { MarqueVoiture } from './marque-voiture.model';
 
 @Injectable()
 export class MarqueVoitureService {
-  selectedClient: MarqueVoiture;
-  clients: MarqueVoiture[];
+  selectedClient!: MarqueVoiture;
+  clients!: MarqueVoiture[];
   
   readonly baseURL = 'http://localhost:3000/marqueVoiture';
 

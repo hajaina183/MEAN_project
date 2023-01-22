@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReparationVoiture } from './reparationVoiture.model';
+import { ReparVoiture } from './repar-voiture.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,12 @@ export class ReparationVoitureService {
     return this.http.post(this.baseURL+`/envoieMail`,emp);
   }
 
-  insertVoiture(emp: ReparationVoiture) {
-    return this.http.post(this.baseURL + `/insertPersoVoiture`, emp);
+  insertVoitureReparation(rep: ReparVoiture) {
+    return this.http.put(this.baseURL + `/insertVoiture`, rep);
+  }
+
+  insertVoiture(rep: ReparationVoiture) {
+    return this.http.post(this.baseURL + `/insertPersoVoiture`, rep);
   }
 
   putClient(emp: ReparationVoiture) {

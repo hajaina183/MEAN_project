@@ -4,7 +4,7 @@
     <!-- Author: FormBold Team -->
     <!-- Learn More: https://formbold.com -->
     <div class="formbold-form-wrapper">
-      <form action="https://formbold.com/s/FORM_ID" method="POST">
+      <form>
           <div class="formbold-input-flex">
             <div>
                 <label for="firstname" class="formbold-form-label"> Nom </label>
@@ -42,11 +42,9 @@
           <div class="formbold-input-flex">
             <div>
                 <label for="phone" class="formbold-form-label"> Marque Voiture </label>
-                
-                <select class="formbold-form-input" name="marque" [(ngModel)]="marque" >
-                    <option value="default">----</option>
-                    <option *ngFor="let player of marqueVoitureList" [value]="player">
-                        {{player.marque}}
+                <select #cricket (change)="update($event)" class="formbold-form-input" [(ngModel)]="marque">
+                    <option *ngFor="let m of marqueVoitureList" [value]="m.marque">
+                        {{m.marque}}
                     </option>
                 </select>
             </div>
@@ -56,10 +54,10 @@
             </div>
           </div>
   
-          <div class="formbold-btn">
-            <input type="button" class="button" (click)="insertVoitureClient()" value="Enregistrer">
+          <div>
+            <button class="formbold-btn" (click)="insertVoitureClient()">Enregistrer</button>
           </div>
-          
+  
       </form>
     </div>
   </div>

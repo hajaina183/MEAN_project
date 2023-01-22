@@ -1,4 +1,4 @@
 export class MarqueVoiture {
-    _id: string;
-    marque: string;
+    _id!: string;
+    marque!: string;
 }
