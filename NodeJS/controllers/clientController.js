@@ -5,7 +5,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 var { Client } = require('../models/client');
 
-// => localhost:3000/admin/
+// => localhost:3000/client/
 router.get('/', (req, res) => {
     Client.find((err, docs) => {
         if (!err) { res.send(docs); }
@@ -56,6 +56,9 @@ router.post('/envoieMail', (req, res) => {
           user: "anitatantely@gmail.com", // generated ethereal user
           pass: "xzdsopensecdlmtt", // generated ethereal password
         },
+        tls: {
+        rejectUnauthorized: false
+        }
       });
       let info = transporter.sendMail({
         from: "anitatantely@gmail.com", // sender address

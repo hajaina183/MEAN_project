@@ -10,12 +10,16 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import { VoitureDiagnostiqueComponent } from '../../voiture-diagnostique/voiture-diagnostique.component';
+import { VoitureGarageComponent } from '../../voiture-garage/voiture-garage.component';
+import { DepenseComponent } from '../../depense/depense.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'voiture-diagnostique',     component: VoitureDiagnostiqueComponent },
+    { path: 'voiture-garage',     component: VoitureGarageComponent },
+    { path: 'depense',     component: DepenseComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },

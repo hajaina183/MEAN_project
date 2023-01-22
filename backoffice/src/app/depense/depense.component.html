@@ -1,0 +1,125 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Saisir dépense</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Salaire</label>
+                  <input type="number" class="form-control" placeholder="Montant" name="salaire" [(ngModel)]="salaire">
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                    <label>Mois</label>
+                    <select #cricket (change)="updateMois($event)" class="form-control">
+                        <option *ngFor="let m of mois" [value]="m">
+                            {{m}}
+                        </option>
+                    </select>
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                    <label for="email">Année</label>
+                    <select #cricket (change)="updateAnnee($event)" class="form-control">
+                        <option *ngFor="let an of annee" [value]="an">
+                            {{an}}
+                        </option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Loyer</label>
+                  <input type="number" class="form-control" placeholder="Montant" name="loyer" [(ngModel)]="loyer">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Achat pièce</label>
+                    <input type="number" class="form-control" placeholder="Montant" name="piece" [(ngModel)]="piece">
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Autres</label>
+                    <input type="number" class="form-control" placeholder="Montant" name="autres" [(ngModel)]="autres">
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" style="width: 200px;" (click)="enregistrer()">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Liste depenses</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+                <th></th>
+                <th>
+                    Salaire
+                </th>
+                <th>
+                    Loyer
+                </th>
+                <th>
+                    Achat pièce
+                </th>
+                <th>
+                    Autres
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dep of depenseService.depenses">
+                    <td>{{dep.mois}} {{dep.annee}}</td>
+                    <td>
+                      {{dep.salaire}} Ar
+                    </td>
+                    <td>
+                        {{dep.loyer}} Ar
+                    </td>
+                    <td>
+                        {{dep.piece}} Ar
+                    </td>
+                    <td>
+                        {{dep.autres}} Ar
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

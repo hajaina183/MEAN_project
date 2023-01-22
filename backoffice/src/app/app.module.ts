@@ -18,6 +18,7 @@ import { VoitureDiagnostiqueComponent } from './voiture-diagnostique/voiture-dia
 import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 import { VoitureGarageComponent } from './voiture-garage/voiture-garage.component';
 import { DetailsComponent } from './details/details.component';
+import { DepenseComponent } from './depense/depense.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { DetailsComponent } from './details/details.component';
     VoitureDiagnostiqueComponent,
     DiagnostiqueComponent,
     VoitureGarageComponent,
-    DetailsComponent
+    DetailsComponent,
+    DepenseComponent
 
   ],
   providers: [],
