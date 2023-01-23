@@ -75,7 +75,10 @@ export class DiagnostiqueComponent implements OnInit {
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
-    let currentDate = `${year}-${month}-${day}`;
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let seconde = date.getSeconds();
+    let currentDate = `${year}-${month}-${day} ${hour}:${minute}:${seconde}`;
     return currentDate;
   }
 
@@ -83,26 +86,35 @@ export class DiagnostiqueComponent implements OnInit {
     var repVoiture = new Voiture();
     repVoiture.modele = this.modele;
     repVoiture.numero = this.numero;
-    var signe = 0;
-    for(var i = 0, l = this.reparationVoitureService.voiture.reparation.length; i < l; i++) {
-      var rep = this.reparationVoitureService.voiture.reparation[i];
-      if(rep.type == type && rep.prix == prix) {
-        signe = 1;
-        this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Reparation '+type+' en cours', '', {
-          timeOut: 8000,
-          closeButton: true,
-          enableHtml: true,
-          toastClass: "alert alert-warning alert-with-icon",
-          positionClass: 'toast-top-center'
-        });
-      } 
-    }
-    if(signe == 0) {
+
+    if(this.reparationVoitureService.voiture.reparation === undefined) {
       this.reparationVoitureService.insertVoitureReparation(repVoiture,this.dateNow(),type,prix).subscribe((res) => {
         if(res) {
           this.getReparations();
         }
       });
+    } else {
+      var signe = 0;
+      for(var i = 0, l = this.reparationVoitureService.voiture.reparation.length; i < l; i++) {
+        var rep = this.reparationVoitureService.voiture.reparation[i];
+        if(rep.type == type && rep.prix == prix) {
+          signe = 1;
+          this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Reparation '+type+' en cours', '', {
+            timeOut: 8000,
+            closeButton: true,
+            enableHtml: true,
+            toastClass: "alert alert-warning alert-with-icon",
+            positionClass: 'toast-top-center'
+          });
+        } 
+      }
+      if(signe == 0) {
+        this.reparationVoitureService.insertVoitureReparation(repVoiture,this.dateNow(),type,prix).subscribe((res) => {
+          if(res) {
+            this.getReparations();
+          }
+        });
+      }
     }
   }
 

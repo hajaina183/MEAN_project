@@ -12,7 +12,10 @@
               <table class="table">
                 <thead class=" text-primary">
                   <th>
-                    Date
+                    Date début
+                  </th>
+                  <th>
+                    Date fin
                   </th>
                   <th>
                     type
@@ -29,6 +32,14 @@
                   <tr *ngFor="let rep of reparationVoitureService.voiture.reparation">
                     <td *ngIf="rep.paye == 0">
                       {{rep.daty}}
+                    </td>
+                    <td *ngIf="rep.paye == 0">
+                      <div *ngIf="rep.dateFin === undefined">
+                        ---
+                      </div>
+                      <div *ngIf="rep.dateFin !== undefined">
+                        {{rep.dateFin}}
+                      </div>
                     </td>
                     <td *ngIf="rep.paye == 0">
                       {{rep.type}}

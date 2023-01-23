@@ -5,6 +5,13 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var { ReparationVoiture } = require('../models/reparationVoiture');
 
 // => localhost:3000/admin/
+router.get('/', (req, res) => {
+    ReparationVoiture.find((err, docs) => {
+        if (!err) { res.send(docs); }
+        else { console.log('Error in Retriving ReparationVoitures :' + JSON.stringify(err, undefined, 2)); }
+    });
+});
+
 router.route("/find").get(function(req, res) {
     ReparationVoiture.find({}, function(err, result) {
       if (err) {
@@ -40,16 +47,6 @@ router.route("/find").get(function(req, res) {
                 res.send(docs[0])
             }
         }
-    });
-});
-
-router.get('/:id', (req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-        return res.status(400).send(`No record with given id : ${req.params.id}`);
-
-        ReparationVoiture.findById(req.params.id, (err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in Retriving Admin :' + JSON.stringify(err, undefined, 2)); }
     });
 });
 
@@ -142,14 +139,24 @@ router.put('/insertVoitureReparation/:date/:type/:prix', (req, res) => {
         
 });
 
+
 router.put('/terminerReparation/:date/:type', (req, res) => {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let seconde = date.getSeconds();
+    let currentDate = `${year}-${month}-${day} ${hour}:${minute}:${seconde}`;
     const filter = { 
         "voiture.modele": req.body.modele, 
         "voiture.numero": req.body.numero 
     };
     const updateDoc = {
         $set:{
-            "voiture.$.reparation.$[element].etat": 1  
+            "voiture.$.reparation.$[element].etat": 1,
+            "voiture.$.reparation.$[element].dateFin": currentDate
         },
     };
     const arrayfiltre = {
