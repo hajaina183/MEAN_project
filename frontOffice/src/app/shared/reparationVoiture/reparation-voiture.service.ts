@@ -11,10 +11,17 @@ export class ReparationVoitureService {
   selectedClient!: ReparationVoitureService;
   ReparationVoiture!: ReparationVoiture[];
   voitures!: Voiture[];
+  voiture = new Voiture();
   
   readonly baseURL = 'http://localhost:3000/reparationVoiture';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.voitures = [];
+   }
+
+  getRepartionVoitureList() {
+    return this.http.get(this.baseURL);
+  }
 
   postClient(emp: ReparationVoiture) {
     return this.http.post(this.baseURL,emp);
@@ -39,10 +46,12 @@ export class ReparationVoitureService {
   putClient(emp: ReparationVoiture) {
     return this.http.put(this.baseURL + `/${emp._id}`, emp);
   }
+  
+  terminerReparation(voiture: Voiture,date: string,type: string) {
+    return this.http.put(this.baseURL + `/terminerReparation/${date}/${type}`, voiture);
+  }
 
   deleteClient(_id: string) {
     return this.http.delete(this.baseURL + `/${_id}`);
   }
-
-  
 }

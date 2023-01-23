@@ -35,14 +35,12 @@ export class ListeVoitureComponent implements OnInit {
  
 
     this.reparationVoitureService.listeVoiture(reparationVoiture).subscribe((res) => {
-      console.log("lasaadla ty tenq  marina haha ");
       if(res) {
         var repV = res as ReparationVoiture[];
         console.log(repV[0].nom);
         for(var i = 0; i< repV[0].voiture.length; i++) {
-          console.log("voiture : "+repV[0].voiture[i]);
+          console.log("voiture : "+repV[0].voiture[i].modele);
           this.reparationVoitureService.voitures.push(repV[0].voiture[i]);
-          // le bouton aleo tode mitambatra ao @ etat io, tsy misy hoe libre tsouny zany fa tode ao le bouton
         }
         console.log(this.reparationVoitureService.voitures);
       } else {

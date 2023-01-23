@@ -8,7 +8,7 @@
   
   <tr *ngFor="let voiture of reparationVoitureService.voitures ; let iteration = index ">
     <td>{{voiture.modele}}</td>
-    <td>{{voiture.numero}}</td>
+    <td><a [routerLink]="['/details']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">{{voiture.numero}}</a></td>
     <td class="wrapper" *ngIf="voiture.diagnostique == 0">
       <button>
         <span>Depanner</span>

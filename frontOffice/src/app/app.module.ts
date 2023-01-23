@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
     NavbarComponent,
     InscriptionComponent,
     AjoutVoitureComponent,
-    ListeVoitureComponent
+    ListeVoitureComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
