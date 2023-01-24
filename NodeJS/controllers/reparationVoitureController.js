@@ -50,6 +50,26 @@ router.route("/find").get(function(req, res) {
         }
     });
 });
+router.put('/depanage', (req, res) => {
+    const filter = { 
+        "voiture.modele": req.body.modele, 
+        "voiture.numero": req.body.numero 
+    };
+    const updateDoc = {
+            $set:{
+                "voiture.$.diagnostique": 1 , 
+            },
+        };
+        ReparationVoiture.updateOne(filter, updateDoc, function (err, docs) {
+            if (err){
+                res.send(err);
+            }
+            else{
+                res.send(docs);
+            }
+        });
+});
+
 
 router.get('/:id', (req, res) => {
     if (!ObjectId.isValid(req.params.id))
