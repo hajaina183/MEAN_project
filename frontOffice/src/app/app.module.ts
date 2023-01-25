@@ -9,6 +9,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
 import { DetailsComponent } from './details/details.component';
+import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DetailsComponent } from './details/details.component';
     InscriptionComponent,
     AjoutVoitureComponent,
     ListeVoitureComponent,
-    DetailsComponent
+    DetailsComponent,
+    PagedirigeantComponent
   ],
   imports: [
     BrowserModule,

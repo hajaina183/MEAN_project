@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../shared/client/client.service';
 import { Client } from '../shared/client/client.model';
@@ -48,16 +49,20 @@ export class InscriptionComponent implements OnInit {
 
 
     this.clientService.postClient(cli).subscribe((res) => {
+      console.log("itaooooo");
       if(res) {
         console.log("ouiiiii");
         this.reparationVoitureService.insertVoiture(reparationVoiture).subscribe((res)=> {
           if(res) {
             console.log("atoo");
             this.clientService.envoieEmail(cli).subscribe((res) => {
-            console.log("tongaaaaaa");
-          })
-        }
-       })
+              if(res) {
+                console.log("tongaaaaaa");
+                this.router.navigate(['../pagedirigeant']);
+              }
+            })
+          }
+        })
       } else {
         alert("Compte introuvable");
       }
