@@ -5,21 +5,14 @@
     <th>Numero voiture</th>
     <th>Etat</th>
   </tr>
-  
+
   <tr *ngFor="let voiture of reparationVoitureService.voitures ; let iteration = index ">
-    <td>
-      {{voiture.modele}}
-      <input type="hidden"  name="modele" ngModel="modele" value="huhu"/>
-    </td>
-    <td>
-      {{voiture.numero}}
-      <input type="hidden"  name="numero" ngModel="numero" value="{{voiture.numero}}"/>
-    </td>
+    <td>{{voiture.modele}}</td>
+    <td><a [routerLink]="['/details']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">{{voiture.numero}}</a></td>
     <td class="wrapper" *ngIf="voiture.diagnostique == 0">
       <button (click)="depanner(voiture.modele, voiture.numero)">
         <span>Depanner</span>
       </button>
-
     </td>
     <td *ngIf=" voiture.diagnostique == 1">
         En reparation
@@ -27,7 +20,5 @@
     <td *ngIf=" voiture.diagnostique == 2">
         En attente
     </td>
-   
   </tr>
-  
 </table>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -9,7 +9,10 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
 import { DetailsComponent } from './details/details.component';
+import { FactureComponent } from './facture/facture.component';
+import { PaiementComponent } from './paiement/paiement.component';
 import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component';
+
 
 @NgModule({
   declarations: [
@@ -19,13 +22,16 @@ import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component'
     AjoutVoitureComponent,
     ListeVoitureComponent,
     DetailsComponent,
-    PagedirigeantComponent
+    PagedirigeantComponent,
+    FactureComponent,
+    PaiementComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

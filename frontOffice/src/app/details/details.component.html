@@ -16,7 +16,6 @@
       <th>
         Etat
       </th>
-      <th></th>
   </tr>
   
   <tr *ngFor="let rep of reparationVoitureService.voiture.reparation ; let iteration = index ">
@@ -45,8 +44,14 @@
             <img src="../assets/5aa78e207603fc558cffbf19.png" style="width: 30px; height: 30px;"/>
         </div>
       </td>
-      <td *ngIf="rep.paye == 0" class="wrapper">
-        <button (click)="terminer(rep.daty,rep.type)" style="width: 100px;">Terminer</button>
-      </td>
   </tr>
 </table>
+
+<br>
+<div class="row">
+  <div class="wrapper col-md-4">
+    <button [routerLink]="['/facture']" [queryParams]="{ numero: numero}">
+      <span>Voir facture</span>
+    </button>
+  </div>
+</div>

@@ -57,7 +57,7 @@ router.put('/depanage', (req, res) => {
     };
     const updateDoc = {
             $set:{
-                "voiture.$.diagnostique": 1 , 
+                "voiture.$.diagnostique": 2, 
             },
         };
         ReparationVoiture.updateOne(filter, updateDoc, function (err, docs) {
@@ -84,7 +84,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/getFacture', async (req, res) => {
     try {
-        const numberCar = req.body.numberCar;
+        const numberCar = req.body.numero;
         const result = await factureService.getFacture(numberCar);
         res.status(200).send(result);
     } catch (error) {
@@ -208,6 +208,39 @@ router.put('/terminerReparation/:date/:type', (req, res) => {
                 "element.daty": req.params.date,
                 "element.type": req.params.type,
                 "element.etat": 0
+            } 
+        ]
+    }
+    console.log(arrayfiltre);
+    console.log(filter);
+    ReparationVoiture.updateOne(filter, updateDoc, arrayfiltre, function (err, docs) {
+        if (err){
+            console.log(err);
+            res.send(err);
+        } else {
+            //console.log(docs);
+            res.send(docs);
+        }
+    });
+        
+});
+
+router.put('/payer/:date/:type/:montant', (req, res) => {
+    const filter = { 
+        "voiture.numero": req.body.numero 
+    };
+    const updateDoc = {
+        $set:{
+            "voiture.$.reparation.$[element].paye": 1,
+            "voiture.$.reparation.$[element].montantPaye": req.params.montant
+        },
+    };
+    const arrayfiltre = {
+        arrayFilters: [
+            { 
+                "element.daty": req.params.date,
+                "element.type": req.params.type,
+                "element.paye": 0
             } 
         ]
     }
