@@ -42,6 +42,7 @@ export class DiagnostiqueComponent implements OnInit {
   }
 
   getReparations() {
+    this.reparationVoitureService.voiture = new Voiture();
     this.reparationVoitureService.getRepartionVoitureList().subscribe((res) => {
       if(res) {
         this.reponse = res;

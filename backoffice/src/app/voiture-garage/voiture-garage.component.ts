@@ -18,6 +18,7 @@ export class VoitureGarageComponent implements OnInit {
 
   ngOnInit(): void {
     this.common.showSpinner();
+    this.reparationVoitureService.reparationVoitures = [];
     this.reparationVoitureService.getRepartionVoitureList().subscribe((res) => {
       if(res) {
         this.reponse = res;

@@ -21,6 +21,7 @@ export class VoitureDiagnostiqueComponent implements OnInit {
 
   ngOnInit(): void {
     this.common.showSpinner();
+    this.reparationVoitureService.reparationVoitures = [];
     this.reparationVoitureService.getRepartionVoitureList().subscribe((res) => {
       if(res) {
         this.reponse = res;
@@ -28,7 +29,7 @@ export class VoitureDiagnostiqueComponent implements OnInit {
           var comm = this.reponse[i];
           for (var j = 0, ll = comm.voiture.length; j < ll; j++) {
             var d = comm.voiture[j];
-            if(d.diagnostique == 0) {
+            if(d.diagnostique == 2) {
               var revV = new ReparationVoiture();
               revV.nom = comm.nom;
               revV.voiture.push(d);
