@@ -5,42 +5,64 @@ var { ReparationVoiture } = require('../models/reparationVoiture');
 
 const getFacture = async (numeroVoiture = null) =>{
     if (!numeroVoiture) throw "Invalid Car number!";
-    const VoitureQuery = [
+
+    const query = [
         {
+            '$unwind': {
+                'path': '$voiture'
+            }
+        }, {
+            '$match': {
+                'voiture.numero': numeroVoiture.trim()
+            }
+        }, {
           '$unwind': {
-            'path': '$voiture'
+            'path': '$voiture.reparation'
           }
         }, {
           '$match': {
-            'voiture.numero': numeroVoiture.trim(), 
             'voiture.reparation.paye': 0
           }
-        }
-    ]
-
-    const total = [
+        }, {
+          '$group': {
+            '_id': '$voiture.numero', 
+            'factureTotal': {
+              '$sum': '$voiture.reparation.prix'
+            }, 
+            'nbrReparation': {
+              '$sum': 1
+            }, 
+            'document': {
+              '$first': '$$ROOT'
+            }, 
+            'listreparation': {
+              '$push': '$voiture.reparation'
+            }
+          }
+        },
         {
-            '$unwind': {
-                'path': '$voiture.reparation'
+            '$project': {
+              'document._id': 1, 
+              'document.nom': 1, 
+              'document.prenom': 1, 
+              'document.adresse': 1, 
+              'document.email': 1, 
+              'document.totalReparation': '$factureTotal', 
+              'document.nbReparation': '$nbrReparation', 
+              'document.voiture.modele': 1, 
+              'document.voiture.numero': 1, 
+              'document.voiture.diagnostique': 1, 
+              'document.voiture.reparation': '$listreparation'
             }
         }, {
-            '$group': {
-                '_id': '$voiture.numero',
-                'factureTotal': {
-                    '$sum': '$voiture.reparation.prix'
-                }, 
-                'nbrReparation': {
-                    '$sum': 1
-                }
+            '$replaceRoot': {
+              'newRoot': '$document'
             }
         }
     ]
-    const totalFactureQuery = VoitureQuery.concat(total);
-    const listVoiture = await ReparationVoiture.aggregate(VoitureQuery);
-    if(listVoiture.length == 0 ) throw 'no result found !';
-    const totalresult = await ReparationVoiture.aggregate(totalFactureQuery);
-    const {factureTotal , nbrReparation} = totalresult.length != 0 ? totalresult[0] : 0;
-    return {...listVoiture[0],factureTotal,nbrReparation};
+    const totalresult = await ReparationVoiture.aggregate(query);
+    if(totalresult.length == 0 ) throw 'no result found !';
+    return totalresult;
 }
 
 module.exports = {
