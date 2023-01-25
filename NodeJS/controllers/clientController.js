@@ -63,15 +63,15 @@ router.post('/envoieMail', (req, res) => {
         tls: {
         rejectUnauthorized: false
         }
-      });
-        /*console.log("Load the template file");
-        const templateFile = fs.readFileSync(__dirname+"/templateEmail/template.html");
-        console.log("Load and inline the style");
-        const templateStyled = inlineCss(templateFile.toString(), {url: "file://"+__dirname+"/templateEmail/"});
-        console.log("Inject the data in the template and compile the html");
-        const templateCompiled = hogan.compile(templateStyled);
-        const templateRendered = templateCompiled.render({text: "HelloWorld"});*/
-        let info = transporter.sendMail({
+    });
+    /*console.log("Load the template file");
+    const templateFile = fs.readFileSync(__dirname+"/templateEmail/template.html");
+    console.log("Load and inline the style");
+    const templateStyled = inlineCss(templateFile.toString(), {url: "file://"+__dirname+"/templateEmail/"});
+    console.log("Inject the data in the template and compile the html");
+    const templateCompiled = hogan.compile(templateStyled);
+    const templateRendered = templateCompiled.render({text: "HelloWorld"});*/
+    let info = transporter.sendMail({
         from: "anitatantely@gmail.com", // sender address
         to:  req.body.email, // list of receivers
         subject: "Confirmation de compte ", // Subject line
@@ -79,23 +79,23 @@ router.post('/envoieMail', (req, res) => {
         //html: "Veuillez cliquez sur le lien pour vous connecter SVP : http://localhost:4200/navbar ", // html body
         html: '<html>' +
         '<head>' +
-         '<style>'+
+        '<style>'+
         ' body { background: white; display: block; margin-left: auto; margin-right: auto }'+
         '.container  {'+
-           ' position: absolute;'+
+        ' position: absolute;'+
             'left: 50%;'+
-           ' top: 50%;'+
+        ' top: 50%;'+
             'transform: translate(-50%, -50%);'+
-           ' height: 400px;'+
+        ' height: 400px;'+
             'width: 600px;'+
             'background: #f2f2f2;'+
             'overflow: hidden;'+
             'border-radius: 20px;'+
             'cursor: pointer;'+
             'box-shadow: 0 0 20px 8px #d0d0d0;'+
-          '}'+
-          
-         ' .content {'+
+        '}'+
+        
+        ' .content {'+
             'position: absolute;'+
             'top: 50%;'+
             'transform: translatey(-50%);'+
@@ -103,28 +103,28 @@ router.post('/envoieMail', (req, res) => {
             'color: black;'+
             'padding: 40px;'+
             'font-family: "Merriweather", serif;'+
-         ' }'+
-          
-          'h1 {font-weight: 900;  text-align: center; }'+
-          
-          'h3 { font-weight: 300; }' +
-          
-          '.flap { width: 100%;  height: 100%; }' +
-          
-         ' .flap::before { position: absolute; content: ""; height: 100%; width: 50%; background: url("https://pbs.twimg.com/profile_images/1347260174176710658/2GfSZ1i__400x400.jpg") white;background-position: 100px; background-repeat: no-repeat;transition: 1s;}' +
-          
-         ' .flap::after {  position: absolute; content: ""; height: 100%; width: 50%; right: 0; background: url("https://pbs.twimg.com/profile_images/1347260174176710658/2GfSZ1i__400x400.jpg") white; background-position: -200px; background-repeat: no-repeat; transition: 1s; }' +
-          
-          '.container:hover .flap::after { transform: translatex(300px);}' +
-          
-          '.container:hover .flap::before{ transform: translatex(-300px); }'+
+        ' }'+
+        
+        'h1 {font-weight: 900;  text-align: center; }'+
+        
+        'h3 { font-weight: 300; }' +
+        
+        '.flap { width: 100%;  height: 100%; }' +
+        
+        ' .flap::before { position: absolute; content: ""; height: 100%; width: 50%; background: url("https://pbs.twimg.com/profile_images/1347260174176710658/2GfSZ1i__400x400.jpg") white;background-position: 100px; background-repeat: no-repeat;transition: 1s;}' +
+        
+        ' .flap::after {  position: absolute; content: ""; height: 100%; width: 50%; right: 0; background: url("https://pbs.twimg.com/profile_images/1347260174176710658/2GfSZ1i__400x400.jpg") white; background-position: -200px; background-repeat: no-repeat; transition: 1s; }' +
+        
+        '.container:hover .flap::after { transform: translatex(300px);}' +
+        
+        '.container:hover .flap::before{ transform: translatex(-300px); }'+
 
-          'button { display: inline-block;background-color: #7b38d8;border-radius: 10px; border: 4px double #cccccc; color: #ffffff; text-align: center; font-size: 28px; padding: 20px; width: 200px; transition: all 0.5s;  cursor: pointer; margin: 5px; }' +
-          'button span { cursor: pointer; display: inline-block; position: relative;  transition: 0.5s; }' +
-          'button span:after { content: "\00bb"; position: absolute; opacity: 0; top: 0; right: -20px;transition: 0.5s; }' +
-          'button:hover { background-color: #f7c2f9; }' + 
-          'button:hover span { padding-right: 25px; }' +
-          'button:hover span:after { opacity: 1; right: 0; }'+
+        'button { display: inline-block;background-color: #7b38d8;border-radius: 10px; border: 4px double #cccccc; color: #ffffff; text-align: center; font-size: 28px; padding: 20px; width: 200px; transition: all 0.5s;  cursor: pointer; margin: 5px; }' +
+        'button span { cursor: pointer; display: inline-block; position: relative;  transition: 0.5s; }' +
+        'button span:after { content: "\00bb"; position: absolute; opacity: 0; top: 0; right: -20px;transition: 0.5s; }' +
+        'button:hover { background-color: #f7c2f9; }' + 
+        'button:hover span { padding-right: 25px; }' +
+        'button:hover span:after { opacity: 1; right: 0; }'+
         '</style>'+
         '</div><div class="container">'+
             '<div class="content">'+
@@ -136,8 +136,9 @@ router.post('/envoieMail', (req, res) => {
         '</div>' +
         '<body>'+
         '</html>'
-        
-      });
+    
+    });
+    res.send('{"msg": "mail envoyer"}');
     
 });
 

@@ -55,7 +55,9 @@ export class InscriptionComponent implements OnInit {
         this.reparationVoitureService.insertVoiture(reparationVoiture).subscribe((res)=> {
           if(res) {
             console.log("atoo");
+            //this.router.navigate(['../pagedirigeant']);
             this.clientService.envoieEmail(cli).subscribe((res) => {
+              //this.router.navigate(['../pagedirigeant']);
               if(res) {
                 console.log("tongaaaaaa");
                 this.router.navigate(['../pagedirigeant']);
