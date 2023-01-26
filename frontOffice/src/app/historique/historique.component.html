@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<table id="customers">
+  <tr>
+    <th>
+        Type de réparation
+      </th>
+
+    <th>
+        Date début
+      </th>
+      <th>
+        Date fin
+      </th>
+      <th>
+        Prix
+      </th>
+      
+  </tr>
+  
+  <tr *ngFor="let rep of reparationVoitureService.voiture.reparation ; let iteration = index ">
+    <td>
+        {{rep.type}}
+    </td>
+    <td >
+        {{rep.daty}}
+    </td>
+      <td >
+        <div *ngIf="rep.dateFin === undefined">
+          ---
+        </div>
+        <div *ngIf="rep.dateFin !== undefined">
+          {{rep.dateFin}}
+        </div>
+      </td>
+      
+      <td >
+        {{rep.prix}} Ar
+      </td>
+      <td >
+        <div *ngIf="rep.etat == 0">
+            <img src="../assets/uncheck-icon-17.jpg" style="width: 30px; height: 30px;"/>
+        </div>
+        <div *ngIf="rep.etat == 1">
+            <img src="../assets/5aa78e207603fc558cffbf19.png" style="width: 30px; height: 30px;"/>
+        </div>
+      </td>
+  </tr>
+</table>
+<br>
+<div class="row">
+    <div class="wrapper col-md-4">
+      <button [routerLink]="['/liste-voiture']">
+        <span>Retour</span>
+      </button>
+    </div>
+</div>

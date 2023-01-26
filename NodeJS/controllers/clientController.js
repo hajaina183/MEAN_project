@@ -130,7 +130,7 @@ router.post('/envoieMail', (req, res) => {
             '<div class="content">'+
             '<h1>Bonjour</h1>'+
             '<h3>Merci de vous enregistrer auprès de nous. Vous faites désormais partie d une grande communauté</h3>'+
-            '<h3>Veuillez cliquer <a href="http://localhost:5000/navbar">ici<a>  pour confirmer votre email.</h3>'+
+            '<h3>Veuillez cliquer <a href="http://localhost:5000/liste-voiture">ici<a>  pour confirmer votre email.</h3>'+
             '</div>'+
             '<div class="flap"></div>'+
         '</div>' +

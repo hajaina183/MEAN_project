@@ -12,6 +12,7 @@ import { DetailsComponent } from './details/details.component';
 import { FactureComponent } from './facture/facture.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component';
+import { HistoriqueComponent } from './historique/historique.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component'
     DetailsComponent,
     PagedirigeantComponent,
     FactureComponent,
-    PaiementComponent
+    PaiementComponent,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule,

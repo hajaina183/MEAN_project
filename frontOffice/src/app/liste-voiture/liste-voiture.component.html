@@ -4,6 +4,7 @@
     <th>Modele Voiture</th>
     <th>Numero voiture</th>
     <th>Etat</th>
+    <th>Action</th>
   </tr>
 
   <tr *ngFor="let voiture of reparationVoitureService.voitures ; let iteration = index ">
@@ -19,6 +20,9 @@
     </td>
     <td *ngIf=" voiture.diagnostique == 2">
         En attente
+    </td>
+    <td>
+      <a [routerLink]="['/historique']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">Voir historique</a>
     </td>
   </tr>
 </table>
