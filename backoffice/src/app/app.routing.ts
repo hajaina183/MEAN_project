@@ -20,6 +20,7 @@ import { VoitureGarageComponent } from './voiture-garage/voiture-garage.componen
 import { DetailsComponent } from './details/details.component';
 import { DepenseComponent } from './depense/depense.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
+import { ValiderPaiementComponent } from './valider-paiement/valider-paiement.component';
 
 const routes: Routes =[
   { path: "", component: LoginComponent},
@@ -170,6 +171,16 @@ const routes: Routes =[
       {
         path: '',
         component: DepenseComponent,
+      },
+    ], 
+  },
+  { 
+    path: 'valider-paiement',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ValiderPaiementComponent,
       },
     ], 
   },

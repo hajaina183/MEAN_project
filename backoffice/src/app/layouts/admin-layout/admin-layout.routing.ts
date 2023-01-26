@@ -12,6 +12,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { VoitureDiagnostiqueComponent } from '../../voiture-diagnostique/voiture-diagnostique.component';
 import { VoitureGarageComponent } from '../../voiture-garage/voiture-garage.component';
 import { DepenseComponent } from '../../depense/depense.component';
+import { ValiderPaiementComponent } from '../../valider-paiement/valider-paiement.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -20,6 +21,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'voiture-diagnostique',     component: VoitureDiagnostiqueComponent },
     { path: 'voiture-garage',     component: VoitureGarageComponent },
     { path: 'depense',     component: DepenseComponent },
+    { path: 'valider-paiement',     component: ValiderPaiementComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },

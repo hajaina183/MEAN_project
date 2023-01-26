@@ -226,13 +226,21 @@ router.put('/terminerReparation/:date/:type', (req, res) => {
 });
 
 router.put('/payer/:date/:type/:montant', (req, res) => {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let seconde = date.getSeconds();
+    let currentDate = `${year}-${month}-${day} ${hour}:${minute}:${seconde}`;
     const filter = { 
         "voiture.numero": req.body.numero 
     };
     const updateDoc = {
         $set:{
             "voiture.$.reparation.$[element].paye": 1,
-            "voiture.$.reparation.$[element].montantPaye": req.params.montant
+            "voiture.$.reparation.$[element].datePaiement": currentDate
         },
     };
     const arrayfiltre = {
@@ -241,6 +249,38 @@ router.put('/payer/:date/:type/:montant', (req, res) => {
                 "element.daty": req.params.date,
                 "element.type": req.params.type,
                 "element.paye": 0
+            } 
+        ]
+    }
+    console.log(arrayfiltre);
+    console.log(filter);
+    ReparationVoiture.updateOne(filter, updateDoc, arrayfiltre, function (err, docs) {
+        if (err){
+            console.log(err);
+            res.send(err);
+        } else {
+            //console.log(docs);
+            res.send(docs);
+        }
+    });
+        
+});
+
+router.put('/validerPaiement/:date/:type', (req, res) => {
+    const filter = { 
+        "voiture.numero": req.body.numero 
+    };
+    const updateDoc = {
+        $set:{
+            "voiture.$.reparation.$[element].paye": 2
+        },
+    };
+    const arrayfiltre = {
+        arrayFilters: [
+            { 
+                "element.daty": req.params.date,
+                "element.type": req.params.type,
+                "element.paye": 1
             } 
         ]
     }

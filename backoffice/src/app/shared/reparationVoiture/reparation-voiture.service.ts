@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReparationVoiture } from './reparationVoiture.model';
 import { Voiture } from './voiture.model';
+import { ReparationPaiement } from './reparationPaiement.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,14 @@ export class ReparationVoitureService {
   reparationVoitures: ReparationVoiture[];
   voitures: Voiture[];
   voiture = new Voiture();
+  reparationPaiement: ReparationPaiement[];
   
   readonly baseURL = 'http://localhost:3000/reparationVoiture';
 
   constructor(private http: HttpClient) {
     this.reparationVoitures = [];
     this.voitures = [];
+    this.reparationPaiement = [];
    }
 
   postClient(emp: ReparationVoiture) {
@@ -36,6 +39,10 @@ export class ReparationVoitureService {
 
   terminerReparation(voiture: Voiture,date: string,type: string) {
     return this.http.put(this.baseURL + `/terminerReparation/${date}/${type}`, voiture);
+  }
+
+  validerPaiement(voiture: Voiture,date: string,type: string) {
+    return this.http.put(this.baseURL + `/validerPaiement/${date}/${type}`, voiture);
   }
 
   putClient(emp: ReparationVoiture) {

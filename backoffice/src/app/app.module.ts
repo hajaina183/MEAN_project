@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,7 @@ import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 import { VoitureGarageComponent } from './voiture-garage/voiture-garage.component';
 import { DetailsComponent } from './details/details.component';
 import { DepenseComponent } from './depense/depense.component';
+import { ValiderPaiementComponent } from './valider-paiement/valider-paiement.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { StatistiqueComponent } from './statistique/statistique.component';
     NgxSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
@@ -42,6 +44,7 @@ import { StatistiqueComponent } from './statistique/statistique.component';
     VoitureGarageComponent,
     DetailsComponent,
     DepenseComponent,
+    ValiderPaiementComponent,
     StatistiqueComponent
 
   ],

@@ -21,7 +21,7 @@ const getFacture = async (numeroVoiture = null) =>{
           }
         }, {
           '$match': {
-            'voiture.reparation.paye': { $lt: 2 }
+            'voiture.reparation.paye': { $lt: 3 }
           }
         }, {
           '$group': {

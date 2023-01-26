@@ -39,7 +39,7 @@ export class FactureComponent implements OnInit {
   getFactures() {
     //this.payer = 0;
     var fact = new Facture();
-    fact.numero = "4537 WWT";
+    fact.numero = this.numero;
     this.reparationVoitureService.getFacture(fact).subscribe((res) => {
       if(res) {
         var obj = JSON.parse(JSON.stringify(res));
@@ -54,10 +54,9 @@ export class FactureComponent implements OnInit {
         this.reparationVoitureService.facture.nbrReparation = obj[0].nbrReparation;
         for(var i=0; i<this.reparationVoitureService.facture.voiture.reparation.length; i++) {
           var reparation = this.reparationVoitureService.facture.voiture.reparation[i];
-          if(reparation.montantPaye === undefined) {
-            reparation.montantPaye = 0;
+          if(reparation.paye == 2) {
+            this.payer = this.payer + +reparation.prix;
           }
-          this.payer = this.payer + +reparation.montantPaye;
         }
         this.reste = +this.reparationVoitureService.facture.totalReparation - this.payer;
         console.log("payer : "+this.payer);

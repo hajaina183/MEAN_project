@@ -14,6 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/notifications', title: 'Notifications',  icon:'ui-1_bell-53', class: '' },
     { path: '/user-profile', title: 'User Profile',  icon:'users_single-02', class: '' },
     { path: '/depense', title: 'Depense',  icon:'users_single-02', class: '' },
+    { path: '/valider-paiement', title: 'Valider paiement',  icon:'design_bullet-list-67', class: '' },
     { path: '/table-list', title: 'Table List',  icon:'design_bullet-list-67', class: '' },
     { path: '/voiture-diagnostique', title: 'Voiture List',  icon:'design_bullet-list-67', class: '' },
     { path: '/voiture-garage', title: 'Garage List',  icon:'design_bullet-list-67', class: '' },
@@ -36,10 +37,10 @@ export class SidebarComponent implements OnInit {
     var adminJSON = localStorage.getItem('adminSession');
     var adminLS = adminJSON && JSON.parse(adminJSON);
     if(adminLS.grade == 1) {
-      ROUTES.splice(7,2);
+      ROUTES.splice(8,2);
       this.menuItems = ROUTES.filter(menuItem => menuItem);
     } else if(adminLS.grade == 0) {
-      ROUTES.splice(5,1);
+      ROUTES.splice(5,2);
       this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
     //this.menuItems = ROUTES.filter(menuItem => menuItem);
