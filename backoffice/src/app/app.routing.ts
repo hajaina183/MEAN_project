@@ -19,6 +19,7 @@ import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 import { VoitureGarageComponent } from './voiture-garage/voiture-garage.component';
 import { DetailsComponent } from './details/details.component';
 import { DepenseComponent } from './depense/depense.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 
 const routes: Routes =[
   { path: "", component: LoginComponent},
@@ -49,6 +50,16 @@ const routes: Routes =[
       {
         path: '',
         component: UserProfileComponent,
+      },
+    ],
+  },
+  {
+    path: 'statistique',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: StatistiqueComponent,
       },
     ],
   },
