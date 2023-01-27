@@ -327,7 +327,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.put('/recupererVoiture/:date', async (req, res) => {
+router.put('/recupererVoiture', async (req, res) => {
     const query = [
         {
           '$match': {
@@ -357,7 +357,6 @@ router.put('/recupererVoiture/:date', async (req, res) => {
     const updateDiagnosticToRecup = {
         $set:{
             "voiture.$.diagnostique": 2,
-            "voiture.$.dateRecuperation": req.params.date
         },
     };
     ReparationVoiture.updateOne(filter, updateDiagnosticToRecup, function (err, docs) {
@@ -369,6 +368,43 @@ router.put('/recupererVoiture/:date', async (req, res) => {
         }
     });
 });
+
+router.put('/validationRecuperation/:date',async (req,res) => {
+    const query = [
+        {
+          '$match': {
+            'email': req.body.emailUser
+          }
+        }, {
+          '$unwind': {
+            'path': '$voiture'
+          }
+        }, {
+          '$match': {
+            "voiture.modele": req.body.modele, "voiture.numero": req.body.numero, "voiture.diagnostique":2
+          }
+        }
+    ];
+    const result = await ReparationVoiture.aggregate(query);
+    if (result.length == 0) return res.status(400).send('Car not found or diagnostic is in progress !');
+    if (result[0]?.voiture?.dateRecuperation) return res.status(200).send('Car already recupered !');
+    const filter = { "voiture.modele": req.body.modele, "voiture.numero": req.body.numero ,  "voiture.diagnostique":2 };
+    const updateDiagnosticToRecup = {
+        $set:{
+            "voiture.$.diagnostique": 0,
+            "voiture.$.dateRecuperation": req.params.date
+        },
+    };
+    ReparationVoiture.updateOne(filter, updateDiagnosticToRecup, function (err, docs) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            return res.status(200).send('Car diagnostic state updated !');
+        }
+    });
+
+})
 
 
 module.exports = router;
