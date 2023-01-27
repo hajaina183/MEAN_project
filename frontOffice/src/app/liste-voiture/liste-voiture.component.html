@@ -2,6 +2,27 @@
 <br>
 <h3 style="  color: navy; text-indent: 30px; text-transform: uppercase; text-align:center"> Liste de votre voiture </h3>
 <br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form class="form-inline">
+        <div class="row">
+          <div class="col-4">
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Numero voiture" name="numero" [(ngModel)]="numero">
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary mb-2" (click)="chercher()" >Chercher</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">

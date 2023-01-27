@@ -50,6 +50,25 @@ router.route("/find").get(function(req, res) {
         }
     });
 });
+
+router.put('/recherche', (req, res) => {
+    const varUnwind = { $unwind: "$voiture" };
+    const varMatch = {
+        $match: {
+          "voiture.numero": req.body.numero,
+        },
+      };
+    
+        ReparationVoiture.aggregate([varUnwind, varMatch], function (err, docs) {
+            if (err){
+                res.send(err);
+            }
+            else{
+                res.send(docs);
+            }
+        });
+});
+
 router.put('/depanage', (req, res) => {
     const filter = { 
         "voiture.modele": req.body.modele, 
