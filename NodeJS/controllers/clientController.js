@@ -58,7 +58,7 @@ router.post('/envoieMail', (req, res) => {
         secure: false, // true for 465, false for other ports
         auth: {
           user: "m1p10meananitahajaina@gmail.com", // generated ethereal user
-          pass: "xzdsopensecdlmtt", // generated ethereal password
+          pass: "dvxslbyyyvlztvtw", // generated ethereal password
         },
         tls: {
         rejectUnauthorized: false
