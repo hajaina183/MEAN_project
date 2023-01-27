@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { ReparationVoiture } from './reparationVoiture.model';
 import { Voiture } from './voiture.model';
 import { ReparationPaiement } from './reparationPaiement.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class ReparationVoitureService {
   voiture = new Voiture();
   reparationPaiement: ReparationPaiement[];
   
-  readonly baseURL = 'http://localhost:3000/reparationVoiture';
+  readonly baseURL = `${environment.base_url}reparationVoiture`;
 
   constructor(private http: HttpClient) {
     this.reparationVoitures = [];

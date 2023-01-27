@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Depense } from './depense.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Depense } from './depense.model';
 export class DepenseService {
   selectedDepense: Depense;
   depenses: Depense[];
-  readonly baseURL = 'http://localhost:3000/depense';
+  readonly baseURL = `${environment.base_url}depense`;
 
   constructor(private http: HttpClient) { }
 

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MarqueVoiture } from './marque-voiture.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MarqueVoitureService {
   selectedClient!: MarqueVoiture;
   clients!: MarqueVoiture[];
   
-  readonly baseURL = 'http://localhost:3000/marqueVoiture';
+  readonly baseURL = `${environment.base_url}marqueVoiture`;
 
   constructor(private http: HttpClient) { }
 

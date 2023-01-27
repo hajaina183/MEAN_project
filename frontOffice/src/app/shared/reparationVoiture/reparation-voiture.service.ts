@@ -4,6 +4,7 @@ import { ReparationVoiture } from './reparationVoiture.model';
 import { ReparVoiture } from './repar-voiture.model';
 import { Voiture } from './voiture.model';
 import { Facture } from './facture.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ReparationVoitureService {
   voiture = new Voiture();
   facture = new Facture();
   
-  readonly baseURL = 'http://localhost:3000/reparationVoiture';
+  readonly baseURL = `${environment.base_url}reparationVoiture`;
 
   constructor(private http: HttpClient) { 
     this.voitures = [] ;

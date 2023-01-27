@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Reparation } from './reparation.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Reparation } from './reparation.model';
 export class ReparationService {
   selectedReparation: Reparation;
   reparations: Reparation[];
-  readonly baseURL = 'http://localhost:3000/reparation';
+  readonly baseURL = `${environment.base_url}reparation`;
 
   constructor(private http: HttpClient) { }
 

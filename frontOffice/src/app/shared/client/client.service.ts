@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Client } from './client.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable()
 export class ClientService {
   selectedClient: Client;
   clients: Client[];
-  
-  readonly baseURL = 'http://localhost:3000/client';
+  readonly baseURL = `${environment.base_url}client`;
 
   constructor(private http: HttpClient) { }
 

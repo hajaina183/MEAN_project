@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../../environments/environment';
+
 
 import { Admin } from './admin.model';
 
@@ -10,7 +12,7 @@ import { Admin } from './admin.model';
 export class AdminService {
   selectedAdmin: Admin;
   admins: Admin[];
-  readonly baseURL = 'http://localhost:3000/admin';
+  readonly baseURL = `${environment.base_url}admin`;
 
   constructor(private http: HttpClient) { }
 
