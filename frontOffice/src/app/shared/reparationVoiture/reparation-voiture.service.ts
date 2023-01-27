@@ -38,6 +38,10 @@ export class ReparationVoitureService {
     return this.http.put(this.baseURL + `/insertVoiture`, rep);
   }
 
+  chercher(voiture: Voiture){
+    return this.http.put(this.baseURL + `/recherche`, voiture);
+  }
+
   insertVoiture(rep: ReparationVoiture) {
     return this.http.post(this.baseURL + `/insertPersoVoiture`, rep);
   }
