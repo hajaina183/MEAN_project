@@ -7,6 +7,8 @@ import { ReparationVoitureService } from '../shared/reparationVoiture/reparation
 import { ReparationVoiture } from '../shared/reparationVoiture/reparationVoiture.model';
 import { Voiture } from '../shared/reparationVoiture/voiture.model';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-diagnostique',
@@ -22,7 +24,8 @@ export class DiagnostiqueComponent implements OnInit {
     public reparationService: ReparationService,
     public reparationVoitureService: ReparationVoitureService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
     ) {}
 
   ngOnInit(): void {
@@ -133,6 +136,14 @@ export class DiagnostiqueComponent implements OnInit {
       if(res) {
         this.getReparations();
       }
+    });
+  }
+
+  openModal(content){
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title', size: 'dialog-centered'
+    }).result.then(async (result) => {
+      console.log("Action when modal is closed !");
     });
   }
 }

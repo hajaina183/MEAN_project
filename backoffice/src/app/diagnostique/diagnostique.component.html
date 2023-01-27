@@ -108,6 +108,20 @@
             </div>
           </div>
         </div>
+        <button (click)="openModal(exportChoose)">
+          Test
+        </button>
       </div>
   </div>
+  <ng-template  #exportChoose data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true" let-modal>
+    <div class="modal-header">
+      Are you Bg right ?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary"  (click)="isFiltered = true;modal.close()"  >Yes , i'm Bg</button>
+      <button type="button" class="btn btn-outline-primary"  (click)="isFiltered = false;modal.close()"  >No , i'm so Beautiful ;)</button>
+    </div>
+  </ng-template>
 </div>
+
+
