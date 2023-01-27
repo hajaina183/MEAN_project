@@ -57,26 +57,17 @@ router.post('/envoieMail', (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "anitatantely@gmail.com", // generated ethereal user
+          user: "m1p10meananitahajaina@gmail.com", // generated ethereal user
           pass: "xzdsopensecdlmtt", // generated ethereal password
         },
         tls: {
         rejectUnauthorized: false
         }
     });
-    /*console.log("Load the template file");
-    const templateFile = fs.readFileSync(__dirname+"/templateEmail/template.html");
-    console.log("Load and inline the style");
-    const templateStyled = inlineCss(templateFile.toString(), {url: "file://"+__dirname+"/templateEmail/"});
-    console.log("Inject the data in the template and compile the html");
-    const templateCompiled = hogan.compile(templateStyled);
-    const templateRendered = templateCompiled.render({text: "HelloWorld"});*/
     let info = transporter.sendMail({
-        from: "anitatantely@gmail.com", // sender address
+        from: "m1p10meananitahajaina@gmail.com", // sender address
         to:  req.body.email, // list of receivers
         subject: "Confirmation de compte ", // Subject line
-        //text: "Veuillez cliquez sur le lien pour vous connecter SVP : http://localhost:4200/navbar ", // plain text body
-        //html: "Veuillez cliquez sur le lien pour vous connecter SVP : http://localhost:4200/navbar ", // html body
         html: '<html>' +
         '<head>' +
         '<style>'+
@@ -130,7 +121,7 @@ router.post('/envoieMail', (req, res) => {
             '<div class="content">'+
             '<h1>Bonjour</h1>'+
             '<h3>Merci de vous enregistrer auprès de nous. Vous faites désormais partie d une grande communauté</h3>'+
-            '<h3>Veuillez cliquer <a href="http://localhost:5000/liste-voiture">ici<a>  pour confirmer votre email.</h3>'+
+            '<h3>Veuillez cliquer <a href="http://localhost:5000/inscription">ici<a>  pour vous connecter.</h3>'+
             '</div>'+
             '<div class="flap"></div>'+
         '</div>' +

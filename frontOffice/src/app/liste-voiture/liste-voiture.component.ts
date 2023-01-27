@@ -6,7 +6,6 @@ import { ReparationVoitureService } from '../shared/reparationVoiture/reparation
 import { Voiture } from '../shared/reparationVoiture/voiture.model';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-liste-voiture',
   templateUrl: './liste-voiture.component.html',
@@ -45,16 +44,11 @@ export class ListeVoitureComponent implements OnInit {
  
 
     this.reparationVoitureService.listeVoiture(reparationVoiture).subscribe((res) => {
-      console.log("lasaadla ty tenq  marina haha ");
       if(res) {
         var repV = res as ReparationVoiture[];
-        console.log(repV[0].nom);
         for(var i = 0; i< repV[0].voiture.length; i++) {
-          console.log("voiture : "+repV[0].voiture[i]);
           this.reparationVoitureService.voitures.push(repV[0].voiture[i]);
-          // le bouton aleo tode mitambatra ao @ etat io, tsy misy hoe libre tsouny zany fa tode ao le bouton
         }
-        console.log(this.reparationVoitureService.voitures);
       } else {
         alert("Tsy mety ");
       }
@@ -63,17 +57,35 @@ export class ListeVoitureComponent implements OnInit {
 
   
   depanner(modele,numero){
-    console.log("depanner : "+modele);
+    //console.log("depanner : "+modele);
     var repVoiture = new Voiture();
     
-    console.log("modele "+modele);
+    //console.log("modele "+modele);
     repVoiture.modele = modele;
-    console.log("numero "+numero);
+    //console.log("numero "+numero);
     repVoiture.numero = numero;
     this.reparationVoitureService.depannerVoiture(repVoiture).subscribe((res) => {
       if(res) {
         this.listeVoiture();
       }
+    });
+  }
+
+  chercher(){
+    this.reparationVoitureService.voitures = [];
+    var voiture = new Voiture();
+    voiture.numero = this.numero;
+    console.log(this.numero);
+    this.reparationVoitureService.chercher(voiture).subscribe((res) => {
+      if(res) {
+        console.log(res);
+        var repV = res as ReparationVoiture;
+        var reparation = new Voiture();
+        reparation = repV[0].voiture;
+        this.reparationVoitureService.voitures.push(reparation);
+        console.log("taille farany "+this.reparationVoitureService.voitures);
+      }
+      
     });
   }
 
