@@ -21,6 +21,9 @@
                     type
                   </th>
                   <th>
+                    Quantité
+                  </th>
+                  <th>
                     Prix
                   </th>
                   <th>
@@ -43,6 +46,9 @@
                     </td>
                     <td *ngIf="rep.paye == 0">
                       {{rep.type}}
+                    </td>
+                    <td *ngIf="rep.paye == 0" class="text-center">
+                      {{rep.quantite}}
                     </td>
                     <td *ngIf="rep.paye == 0">
                       {{rep.prix}} Ar

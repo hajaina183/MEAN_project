@@ -35,8 +35,8 @@ export class ReparationVoitureService {
     return this.http.post(this.baseURL + `/insertPersoVoiture`, emp);
   }
 
-  insertVoitureReparation(voiture: Voiture,date: string,type: string,prix: string) {
-    return this.http.put(this.baseURL + `/insertVoitureReparation/${date}/${type}/${prix}`, voiture);
+  insertVoitureReparation(voiture: Voiture,date: string,type: string,prix: number, qte: number) {
+    return this.http.put(this.baseURL + `/insertVoitureReparation/${date}/${type}/${prix}/${qte}`, voiture);
   }
 
   terminerReparation(voiture: Voiture,date: string,type: string) {

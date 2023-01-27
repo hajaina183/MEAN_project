@@ -40,7 +40,12 @@
                                 Facture
                             </div>
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Date:</span> {{currentDate}}</div>
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div>
+                            <div class="my-2">
+                                <i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> 
+                                <span class="text-600 text-90">Status: </span> 
+                                <span class="badge badge-warning badge-pill px-25" *ngIf="reste == 0"> Payer</span>
+                                <span class="badge badge-warning badge-pill px-25" *ngIf="reste < reparationVoitureService.facture.totalReparation && reste != 0"> Non payer</span>
+                            </div>
                             <div class="action-buttons">
                                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
                                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
@@ -58,7 +63,8 @@
                 <div class="mt-4">
                     <div class="row text-600 text-white bgc-default-tp1 py-25">
                         <div class="d-none d-sm-block col-1">#</div>
-                        <div class="col-9 col-sm-5">Description</div>
+                        <div class="col-9 col-sm-3">Description</div>
+                        <div class="d-none d-sm-block col-4 col-sm-2">Quantité</div>
                         <div class="d-none d-sm-block col-4 col-sm-2">Prix</div>
                         <div class="d-none d-sm-block col-sm-2">Etat</div>
                         <div class="col-2">Payement</div>
@@ -66,7 +72,8 @@
                     <div class="text-95 text-secondary-d3">
                         <div class="row mb-2 mb-sm-0 py-25" *ngFor="let reparation of reparationVoitureService.facture.voiture.reparation ; let iteration = index ">
                             <div class="d-none d-sm-block col-1">{{iteration+1}}</div>
-                            <div class="col-9 col-sm-5">{{reparation.type}}</div>
+                            <div class="col-9 col-sm-3">{{reparation.type}}</div>
+                            <div class="d-none d-sm-block col-2">{{reparation.quantite}}</div>
                             <div class="d-none d-sm-block col-2">{{reparation.prix}} Ar</div>
                             <div class="d-none d-sm-block col-2 text-95">
                                 <div *ngIf="reparation.etat == 0">

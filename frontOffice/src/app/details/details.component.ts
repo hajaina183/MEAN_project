@@ -35,6 +35,7 @@ export class DetailsComponent implements OnInit {
           var comm = this.reponse[i];
           for (var j = 0, ll = comm.voiture.length; j < ll; j++) {
             var d = comm.voiture[j];
+            console.log(this.modele);
             if(d.modele == this.modele && d.numero == this.numero) {
               //for (var k = 0, lll = d.reparation.length; k < lll; k++) {}
               var revV = new Voiture();
@@ -43,6 +44,7 @@ export class DetailsComponent implements OnInit {
               revV.diagnostique = d.diagnostique;
               revV.reparation = d.reparation;
               this.reparationVoitureService.voiture = revV;
+              console.log("reparation : "+this.reparationVoitureService.voiture);
             }
           }
       }

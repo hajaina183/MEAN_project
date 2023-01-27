@@ -161,7 +161,7 @@ router.put('/insertVoiture', (req, res) => {
 
 
 
-router.put('/insertVoitureReparation/:date/:type/:prix', (req, res) => {
+router.put('/insertVoitureReparation/:date/:type/:prix/:qte', (req, res) => {
     var voi = new ReparationVoiture({
         voiture: req.body.voiture
     });
@@ -174,7 +174,8 @@ router.put('/insertVoitureReparation/:date/:type/:prix', (req, res) => {
                     type: req.params.type,
                     prix: parseInt(req.params.prix),
                     etat: 0,
-                    paye: 0
+                    paye: 0,
+                    quantite: +req.params.qte
                 }    
         },
       };

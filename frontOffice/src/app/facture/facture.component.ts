@@ -55,7 +55,8 @@ export class FactureComponent implements OnInit {
         for(var i=0; i<this.reparationVoitureService.facture.voiture.reparation.length; i++) {
           var reparation = this.reparationVoitureService.facture.voiture.reparation[i];
           if(reparation.paye == 2) {
-            this.payer = this.payer + +reparation.prix;
+            var paiement = (+reparation.prix * +reparation.quantite);
+            this.payer = this.payer + paiement;
           }
         }
         this.reste = +this.reparationVoitureService.facture.totalReparation - this.payer;

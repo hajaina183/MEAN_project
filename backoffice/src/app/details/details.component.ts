@@ -46,6 +46,7 @@ export class DetailsComponent implements OnInit {
               revV.diagnostique = d.diagnostique;
               revV.reparation = d.reparation;
               this.reparationVoitureService.voiture = revV;
+              console.log("rep : "+JSON.stringify(this.reparationVoitureService.voiture));
             }
           }
       }

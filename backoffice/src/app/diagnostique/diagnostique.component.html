@@ -26,7 +26,7 @@
               <tbody>
                 <tr *ngFor="let rep of reparationService.reparations">
                     <td>
-                      <div (drop)="drop($event)" (dragover)="allowDrop($event)">
+                      <div (drop)="drop($event,exportChoose)" (dragover)="allowDrop($event)">
                         <img src="{{'../assets/img/'+rep.type + '.jpg'}}" style="width: 50px; height: 50px;" draggable="true" (dragstart)="drag(rep.type,rep.prix)" id="drag1"/>
                       </div>
                     </td>
@@ -46,13 +46,13 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" (drop)="drop($event,exportChoose)" (dragover)="allowDrop($event)">
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">Liste réparations</h4>
           </div>
           <div class="card-body">
-            <div class="table-responsive" (drop)="drop($event)" (dragover)="allowDrop($event)">
+            <div class="table-responsive" >
               <table class="table">
                 <thead class=" text-primary">
                   <th>
@@ -63,6 +63,9 @@
                   </th>
                   <th>
                     type
+                  </th>
+                  <th>
+                    Quantité
                   </th>
                   <th>
                     Prix
@@ -88,6 +91,9 @@
                     <td *ngIf="rep.paye == 0">
                       {{rep.type}}
                     </td>
+                    <td *ngIf="rep.paye == 0" class="text-center">
+                      {{rep.quantite}}
+                    </td>
                     <td *ngIf="rep.paye == 0">
                       {{rep.prix}} Ar
                     </td>
@@ -108,18 +114,15 @@
             </div>
           </div>
         </div>
-        <button (click)="openModal(exportChoose)">
-          Test
-        </button>
       </div>
   </div>
   <ng-template  #exportChoose data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true" let-modal>
     <div class="modal-header">
-      Are you Bg right ?
+      Veuillez entrer la quantité de la réparation
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-primary"  (click)="isFiltered = true;modal.close()"  >Yes , i'm Bg</button>
-      <button type="button" class="btn btn-outline-primary"  (click)="isFiltered = false;modal.close()"  >No , i'm so Beautiful ;)</button>
+      <input type="number" class="form-control" placeholder="Quantité" name="quantite" [(ngModel)]="quantite">
+      <button class="btn btn-primary btn-block" style="width: 100px;" (click)="isFiltered = true;modal.close()"  >Valider</button>
     </div>
   </ng-template>
 </div>

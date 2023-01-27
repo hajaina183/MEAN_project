@@ -20,6 +20,10 @@ export class DiagnostiqueComponent implements OnInit {
   numero!: string;
   client!: string;
   reponse!: any;
+  quantite!: number;
+  typeRep!: string;
+  prixRep!: number;
+
   constructor(
     public reparationService: ReparationService,
     public reparationVoitureService: ReparationVoitureService,
@@ -87,45 +91,53 @@ export class DiagnostiqueComponent implements OnInit {
   }
 
   drag(type, prix) {
+    this.typeRep = type;
+    this.prixRep = prix;
+    
+  }
+
+  drop(ev,content) {
+    ev.preventDefault();
+    console.log("drop");
+    console.log("type : "+this.typeRep);
     var repVoiture = new Voiture();
     repVoiture.modele = this.modele;
     repVoiture.numero = this.numero;
-
-    if(this.reparationVoitureService.voiture.reparation === undefined) {
-      this.reparationVoitureService.insertVoitureReparation(repVoiture,this.dateNow(),type,prix).subscribe((res) => {
-        if(res) {
-          this.getReparations();
-        }
-      });
-    } else {
-      var signe = 0;
-      for(var i = 0, l = this.reparationVoitureService.voiture.reparation.length; i < l; i++) {
-        var rep = this.reparationVoitureService.voiture.reparation[i];
-        if(rep.type == type && rep.prix == prix) {
-          signe = 1;
-          this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Reparation '+type+' en cours', '', {
-            timeOut: 8000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-warning alert-with-icon",
-            positionClass: 'toast-top-center'
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title', size: 'dialog-centered'
+    }).result.then(async (result) => {
+        if(this.reparationVoitureService.voiture.reparation === undefined) {
+          this.reparationVoitureService.insertVoitureReparation(repVoiture,this.dateNow(),this.typeRep,this.prixRep,this.quantite).subscribe((res) => {
+            if(res) {
+              this.getReparations();
+            }
           });
-        } 
-      }
-      if(signe == 0) {
-        this.reparationVoitureService.insertVoitureReparation(repVoiture,this.dateNow(),type,prix).subscribe((res) => {
-          if(res) {
-            this.getReparations();
+        } else {
+          var signe = 0;
+          for(var i = 0, l = this.reparationVoitureService.voiture.reparation.length; i < l; i++) {
+            var rep = this.reparationVoitureService.voiture.reparation[i];
+            if(rep.type == this.typeRep && rep.prix == this.prixRep) {
+              signe = 1;
+              this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Reparation '+this.typeRep+' en cours', '', {
+                timeOut: 8000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-warning alert-with-icon",
+                positionClass: 'toast-top-center'
+              });
+            } 
           }
-        });
-      }
-    }
-  }
-
-  drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+          if(signe == 0) {
+            this.reparationVoitureService.insertVoitureReparation(repVoiture,this.dateNow(),this.typeRep,this.prixRep,this.quantite).subscribe((res) => {
+              if(res) {
+                this.getReparations();
+              }
+            });
+          }
+        }
+    });
+    //var data = ev.dataTransfer.getData("text");
+    //ev.target.appendChild(document.getElementById(data));
   }
 
   terminer(date, type) {

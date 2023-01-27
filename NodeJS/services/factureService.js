@@ -27,7 +27,7 @@ const getFacture = async (numeroVoiture = null) =>{
           '$group': {
             '_id': '$voiture.numero', 
             'factureTotal': {
-              '$sum': '$voiture.reparation.prix'
+              '$sum': { $multiply: [ '$voiture.reparation.prix', '$voiture.reparation.quantite' ] }
             }, 
             'nbrReparation': {
               '$sum': 1
