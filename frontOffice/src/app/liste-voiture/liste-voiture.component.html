@@ -1,28 +1,42 @@
 <app-navbar></app-navbar>
-<table id="customers">
-  <tr>
-    <th>Modele Voiture</th>
-    <th>Numero voiture</th>
-    <th>Etat</th>
-    <th>Action</th>
-  </tr>
-
-  <tr *ngFor="let voiture of reparationVoitureService.voitures ; let iteration = index ">
-    <td>{{voiture.modele}}</td>
-    <td><a [routerLink]="['/details']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">{{voiture.numero}}</a></td>
-    <td class="wrapper" *ngIf="voiture.diagnostique == 0">
-      <button (click)="depanner(voiture.modele, voiture.numero)">
-        <span>Depanner</span>
-      </button>
-    </td>
-    <td *ngIf=" voiture.diagnostique == 1">
-        En reparation
-    </td>
-    <td *ngIf=" voiture.diagnostique == 2">
-        En attente
-    </td>
-    <td>
-      <a [routerLink]="['/historique']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">Voir historique</a>
-    </td>
-  </tr>
-</table>
+<br>
+<h3 style="  color: navy; text-indent: 30px; text-transform: uppercase; text-align:center"> Liste de votre voiture </h3>
+<br>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Modele Voiture</th>
+          <th scope="col">Numero voiture</th>
+          <th scope="col">Etat</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let voiture of reparationVoitureService.voitures ; let iteration = index ">
+          <th scope="row">{{iteration}}</th>
+          <td>{{voiture.modele}}</td>
+          <td><a [routerLink]="['/details']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">{{voiture.numero}}</a></td>
+          <td *ngIf="voiture.diagnostique == 0">
+            <button class="btn btn-light" (click)="depanner(voiture.modele, voiture.numero)">
+              <span>Depanner</span>
+            </button>
+          </td>
+          <td *ngIf=" voiture.diagnostique == 1">
+            En reparation
+          </td>
+          <td *ngIf=" voiture.diagnostique == 2">
+            En attente
+          </td>
+          <td>
+            <a [routerLink]="['/historique']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">Voir historique</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-2"></div>
+</div>
