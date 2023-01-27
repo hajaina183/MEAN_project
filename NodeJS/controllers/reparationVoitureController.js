@@ -327,4 +327,48 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+router.put('/recupererVoiture/:date', async (req, res) => {
+    const query = [
+        {
+          '$match': {
+            'email': req.body.emailUser
+          }
+        }, {
+          '$unwind': {
+            'path': '$voiture'
+          }
+        }, {
+          '$match': {
+            "voiture.modele": req.body.modele, "voiture.numero": req.body.numero
+          }
+        }
+    ]
+    const result = await ReparationVoiture.aggregate(query);
+    if (result.length == 0) return res.status(400).send('Car not found !');
+    const reparationList = result[0]?.voiture?.reparation;
+    if (reparationList && reparationList?.length == 0) return res.status(400).send('there is no reparation for this car !');
+    if (result[0]?.voiture?.dateRecuperation) return res.status(200).send('Car already recupered !');
+    for (const reparation of reparationList) {
+        if (!reparation?.paye || reparation?.paye != 2) {
+            return res.status(200).send('can you all pay your bill ? Thanks');
+        }
+    }
+    const filter = { "voiture.modele": req.body.modele, "voiture.numero": req.body.numero };
+    const updateDiagnosticToRecup = {
+        $set:{
+            "voiture.$.diagnostique": 2,
+            "voiture.$.dateRecuperation": req.params.date
+        },
+    };
+    ReparationVoiture.updateOne(filter, updateDiagnosticToRecup, function (err, docs) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            return res.status(200).send('Car diagnostic state updated !');
+        }
+    });
+});
+
+
 module.exports = router;
