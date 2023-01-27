@@ -83,7 +83,7 @@ export class InscriptionComponent implements OnInit {
         // set local storage
         localStorage.setItem('adminSession', JSON.stringify(this.clientResponse));
         //console.log(this.clientResponse._id);
-        this.router.navigate(['../navbar']);
+        this.router.navigate(['../liste-voiture']);
       } else {
         alert("Compte introuvable")
       }

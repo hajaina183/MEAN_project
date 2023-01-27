@@ -34,6 +34,7 @@
           <th scope="col">Numero voiture</th>
           <th scope="col">Etat</th>
           <th scope="col">Action</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -54,6 +55,11 @@
           </td>
           <td>
             <a [routerLink]="['/historique']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">Voir historique</a>
+          </td>
+          <td *ngIf=" voiture.pourcentage == 100">
+            <button class="btn btn-light" (click)="depanner(voiture.modele, voiture.numero)">
+              <span>Récupérer</span>
+            </button>
           </td>
         </tr>
       </tbody>

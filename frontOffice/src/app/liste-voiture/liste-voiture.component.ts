@@ -35,19 +35,30 @@ export class ListeVoitureComponent implements OnInit {
     var clientLS = new Client();
     var adminJSON = localStorage.getItem('adminSession');
     clientLS = adminJSON && JSON.parse(adminJSON);
-
     var reparationVoiture = new ReparationVoiture();
-
-
     reparationVoiture.email= JSON.stringify(clientLS.email).replace(/"/g, '');
     reparationVoiture.nom =  JSON.stringify(clientLS.nom).replace(/"/g, '');
- 
-
     this.reparationVoitureService.listeVoiture(reparationVoiture).subscribe((res) => {
       if(res) {
         var repV = res as ReparationVoiture[];
         for(var i = 0; i< repV[0].voiture.length; i++) {
-          this.reparationVoitureService.voitures.push(repV[0].voiture[i]);
+          var daba = new Voiture();
+          daba.modele = repV[0].voiture[i].modele;
+          daba.numero = repV[0].voiture[i].numero;
+          daba.diagnostique = repV[0].voiture[i].diagnostique;
+          daba.reparation = repV[0].voiture[i].reparation;
+          if(repV[0].voiture[i].reparation !== undefined) {
+            var yes = 0;
+            var no = 0;
+            for(var j = 0; j< repV[0].voiture[i].reparation.length; j++) {
+              var reparation = repV[0].voiture[i].reparation[j];
+                if(reparation.etat == 1) { yes++; }
+                else if(reparation.etat == 0) { no++; }
+            }
+            var pourcentage = Math.round((100 * yes) / repV[0].voiture[i].reparation.length);
+            daba.pourcentage = pourcentage;
+          }
+          this.reparationVoitureService.voitures.push(daba);
         }
       } else {
         alert("Tsy mety ");
@@ -79,11 +90,25 @@ export class ListeVoitureComponent implements OnInit {
     this.reparationVoitureService.chercher(voiture).subscribe((res) => {
       if(res) {
         console.log(res);
+        var daba = new Voiture();
         var repV = res as ReparationVoiture;
-        var reparation = new Voiture();
-        reparation = repV[0].voiture;
-        this.reparationVoitureService.voitures.push(reparation);
-        console.log("taille farany "+this.reparationVoitureService.voitures);
+        daba.modele = repV[0].voiture.modele;
+        daba.numero = repV[0].voiture.numero;
+        daba.diagnostique = repV[0].voiture.diagnostique;
+        daba.reparation = repV[0].voiture.reparation;
+        if(repV[0].voiture.reparation !== undefined) {
+          var yes = 0;
+          var no = 0;
+          for(var j = 0; j< repV[0].voiture.reparation.length; j++) {
+            var rep = repV[0].voiture.reparation[j];
+              if(rep.etat == 1) { yes++; }
+              else if(rep.etat == 0) { no++; }
+          }
+          var pourcentage = Math.round((100 * yes) / repV[0].voiture.reparation.length);
+          daba.pourcentage = pourcentage;
+        }
+        this.reparationVoitureService.voitures.push(daba);
+        
       }
       
     });

@@ -3,4 +3,5 @@ export class Voiture {
     numero: string;
     diagnostique: number;
     reparation: any[] = [];
+    pourcentage!: Number;
 }
