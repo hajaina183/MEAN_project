@@ -47,6 +47,10 @@ export class ReparationVoitureService {
     return this.http.put(this.baseURL + `/validerPaiement/${date}/${type}`, voiture);
   }
 
+  validerSortie(voiture: Voiture) {
+    return this.http.put(this.baseURL + `/validerSortie`, voiture);
+  }
+
   putClient(emp: ReparationVoiture) {
     return this.http.put(this.baseURL + `/${emp._id}`, emp);
   }

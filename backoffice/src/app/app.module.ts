@@ -21,6 +21,7 @@ import { DetailsComponent } from './details/details.component';
 import { DepenseComponent } from './depense/depense.component';
 import { ValiderPaiementComponent } from './valider-paiement/valider-paiement.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
+import { ValiderSortieComponent } from './valider-sortie/valider-sortie.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { StatistiqueComponent } from './statistique/statistique.component';
     DetailsComponent,
     DepenseComponent,
     ValiderPaiementComponent,
-    StatistiqueComponent
+    StatistiqueComponent,
+    ValiderSortieComponent
 
   ],
   providers: [],

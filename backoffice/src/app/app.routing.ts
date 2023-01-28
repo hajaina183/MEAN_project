@@ -21,6 +21,7 @@ import { DetailsComponent } from './details/details.component';
 import { DepenseComponent } from './depense/depense.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { ValiderPaiementComponent } from './valider-paiement/valider-paiement.component';
+import { ValiderSortieComponent } from './valider-sortie/valider-sortie.component';
 
 const routes: Routes =[
   { path: "", component: LoginComponent},
@@ -181,6 +182,16 @@ const routes: Routes =[
       {
         path: '',
         component: ValiderPaiementComponent,
+      },
+    ], 
+  },
+  { 
+    path: 'valider-sortie',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ValiderSortieComponent,
       },
     ], 
   },

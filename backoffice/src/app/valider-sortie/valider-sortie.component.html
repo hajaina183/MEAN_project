@@ -1,0 +1,52 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Récupération à valider </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <form [formGroup]="form" (ngSubmit)="valider()">
+                <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                      </th>
+                      <th>
+                        Numero
+                      </th>
+                      <th>
+                        Modèle
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rep of reparationVoitureService.voitures">
+                        <td>
+                          <input type="checkbox" [value]="rep.numero" (change)="onCheckboxChange($event)"/>
+                        </td>
+                        <td>
+                          {{rep.numero}}
+                        </td>
+                        <td>
+                          {{rep.modele}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" style="width: 200px;" [disabled]="!form.valid">Valider</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

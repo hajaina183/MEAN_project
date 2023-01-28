@@ -405,6 +405,25 @@ router.put('/validationRecuperation/:date',async (req,res) => {
         }
     });
 
+});
+
+router.put('/validerSortie',async (req,res) => {
+    const filter = { 
+        "voiture.numero": req.body.numero 
+    };
+    const updateDoc = {
+        $set:{
+            "voiture.$.diagnostique": 0
+        },
+    };
+    ReparationVoiture.updateOne(filter, updateDoc, function (err, docs) {
+        if (err){
+            res.send(err);
+        } else {
+            res.send(docs);
+        }
+    });
+
 })
 
 

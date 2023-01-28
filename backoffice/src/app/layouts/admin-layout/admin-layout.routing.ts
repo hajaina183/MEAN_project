@@ -13,6 +13,8 @@ import { VoitureDiagnostiqueComponent } from '../../voiture-diagnostique/voiture
 import { VoitureGarageComponent } from '../../voiture-garage/voiture-garage.component';
 import { DepenseComponent } from '../../depense/depense.component';
 import { ValiderPaiementComponent } from '../../valider-paiement/valider-paiement.component';
+import { StatistiqueComponent } from '../../statistique/statistique.component';
+import { ValiderSortieComponent } from '../../valider-sortie/valider-sortie.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -22,6 +24,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'voiture-garage',     component: VoitureGarageComponent },
     { path: 'depense',     component: DepenseComponent },
     { path: 'valider-paiement',     component: ValiderPaiementComponent },
+    { path: 'statistique',     component: StatistiqueComponent },
+    { path: 'valider-sortie',     component: ValiderSortieComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
