@@ -11,6 +11,7 @@ import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component'
 import { FactureComponent } from './facture/facture.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { HistoriqueComponent } from './historique/historique.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   { path: "", component: InscriptionComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: "pagedirigeant",component: PagedirigeantComponent},
   { path: "facture", component: FactureComponent},
   { path: "paiement", component: PaiementComponent},
-  { path: "historique", component: HistoriqueComponent}
+  { path: "historique", component: HistoriqueComponent},
+  { path: "footer", component: FooterComponent},
   
 ];
 

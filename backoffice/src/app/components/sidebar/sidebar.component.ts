@@ -42,8 +42,7 @@ export class SidebarComponent implements OnInit {
         { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
         { path: '/statistique', title: 'Tableau de bord',  icon: 'design_app', class: '' },
         { path: '/depense', title: 'Depense',  icon:'users_single-02', class: '' },
-        { path: '/valider-paiement', title: 'Valider paiement',  icon:'design_bullet-list-67', class: '' },
-        { path: '/valider-sortie', title: 'Valider récupération',  icon:'design_bullet-list-67', class: '' }
+        { path: '/valider-paiement', title: 'Valider paiement',  icon:'design_bullet-list-67', class: '' }
     
     ];
       this.menuItems = routeMenu.filter(menuItem => menuItem);
@@ -53,7 +52,8 @@ export class SidebarComponent implements OnInit {
         { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
         { path: '/statistique', title: 'Tableau de bord',  icon: 'design_app', class: '' },
         { path: '/voiture-diagnostique', title: 'Voiture List',  icon:'design_bullet-list-67', class: '' },
-        { path: '/voiture-garage', title: 'Garage List',  icon:'design_bullet-list-67', class: '' }
+        { path: '/voiture-garage', title: 'Garage List',  icon:'design_bullet-list-67', class: '' },
+        { path: '/valider-sortie', title: 'Valider récupération',  icon:'design_bullet-list-67', class: '' }
     
     ];
       this.menuItems = routeMenu.filter(menuItem => menuItem);

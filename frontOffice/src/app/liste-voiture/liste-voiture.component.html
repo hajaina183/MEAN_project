@@ -47,7 +47,7 @@
               <span>Depanner</span>
             </button>
           </td>
-          <td *ngIf=" voiture.diagnostique == 1">
+          <td *ngIf=" voiture.diagnostique == 1 || voiture.diagnostique == 3">
             En reparation
           </td>
           <td *ngIf=" voiture.diagnostique == 2">
@@ -67,3 +67,4 @@
   </div>
   <div class="col-md-2"></div>
 </div>
+<app-footer></app-footer>

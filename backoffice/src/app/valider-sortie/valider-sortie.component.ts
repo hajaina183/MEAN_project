@@ -38,7 +38,7 @@ export class ValiderSortieComponent implements OnInit {
           for (var j = 0, ll = comm.voiture.length; j < ll; j++) {
             var d = comm.voiture[j];
             console.log(d);
-            if(d.diagnostique == 2) {
+            if(d.diagnostique == 3) {
               this.reparationVoitureService.voitures.push(d);
             }
           }

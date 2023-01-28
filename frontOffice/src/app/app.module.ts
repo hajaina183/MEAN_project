@@ -13,6 +13,7 @@ import { FactureComponent } from './facture/facture.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { PagedirigeantComponent } from './pagedirigeant/pagedirigeant.component';
 import { HistoriqueComponent } from './historique/historique.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HistoriqueComponent } from './historique/historique.component';
     PagedirigeantComponent,
     FactureComponent,
     PaiementComponent,
-    HistoriqueComponent
+    HistoriqueComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
