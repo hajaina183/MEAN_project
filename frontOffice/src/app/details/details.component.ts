@@ -43,8 +43,18 @@ export class DetailsComponent implements OnInit {
               revV.numero = d.numero;
               revV.diagnostique = d.diagnostique;
               revV.reparation = d.reparation;
+              if(d.reparation !== undefined) {
+                var yes = 0;
+                var no = 0;
+                for(var k = 0; k< d.reparation.length; k++) {
+                  var rep = d.reparation[k];
+                    if(rep.etat == 1) { yes++; }
+                    else if(rep.etat == 0) { no++; }
+                }
+                var pourcentage = Math.round((100 * yes) / d.reparation.length);
+                revV.pourcentage = pourcentage;
+              }
               this.reparationVoitureService.voiture = revV;
-              console.log("reparation : "+this.reparationVoitureService.voiture);
             }
           }
       }

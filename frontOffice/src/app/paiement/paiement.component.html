@@ -1,40 +1,49 @@
 <app-navbar></app-navbar>
-<form [formGroup]="form" (ngSubmit)="payer()">
-    <table id="customers">
-        <tr>
-          <th></th>
-            <th>
-              type
-            </th>
-            <th>
-              Prix
-            </th>
-            <th>
-              Etat réparation
-            </th>
-        </tr>
-        
-        <tr *ngFor="let rep of reparationVoitureService.voiture.reparation ; let iteration = index ">
-          <td *ngIf="rep.paye == 0">
-            <input type="checkbox" [value]="rep.type+'_'+rep.daty+'_'+rep.prix" (change)="onCheckboxChange($event)" />
-            </td>
+<br>
+<h3 style="  color: navy; text-indent: 30px; text-transform: uppercase; text-align:center"> Paiement réparation </h3>
+<br>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <form [formGroup]="form" (ngSubmit)="payer()">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+              <th scope="col">type</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Etat réparation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rep of reparationVoitureService.voiture.reparation ; let iteration = index ">
             <td *ngIf="rep.paye == 0">
-              {{rep.type}}
+              <input type="checkbox" [value]="rep.type+'_'+rep.daty+'_'+rep.prix" (change)="onCheckboxChange($event)" />
             </td>
-            <td *ngIf="rep.paye == 0">
-              {{rep.prix}} Ar
-            </td>
+            <td *ngIf="rep.paye == 0">{{rep.type}}</td>
+            <td *ngIf="rep.paye == 0">{{rep.prix}} Ar</td>
             <td *ngIf="rep.paye == 0">
               <div *ngIf="rep.etat == 0">
-                  <img src="../assets/uncheck-icon-17.jpg" style="width: 30px; height: 30px;"/>
+                <img src="../assets/uncheck-icon-17.jpg" style="width: 30px; height: 30px;"/>
               </div>
               <div *ngIf="rep.etat == 1">
-                  <img src="../assets/5aa78e207603fc558cffbf19.png" style="width: 30px; height: 30px;"/>
+                <img src="../assets/5aa78e207603fc558cffbf19.png" style="width: 30px; height: 30px;"/>
               </div>
             </td>
-        </tr>
+          </tr>
+        </tbody>
       </table>
       <br>
-      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Payer</button>
-</form>
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
+            Payer
+          </button>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </form>
+  </div>
+</div>
 

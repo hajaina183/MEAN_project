@@ -12,13 +12,14 @@
           <th scope="col"> Type de réparation</th>
           <th scope="col">Date début</th>
           <th scope="col">Date fin</th>
+          <th scope="col">Quantité</th>
           <th scope="col">Prix</th>
           <th scope="col">Etat</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let rep of reparationVoitureService.voiture.reparation ; let iteration = index  ">
-          <th scope="row">{{iteration}}</th>
+          <th scope="row">{{iteration+1}}</th>
           <td>{{rep.type}}</td>
           <td> {{rep.daty}}</td>
           <td *ngIf="rep.dateFin === undefined">
@@ -26,6 +27,9 @@
           </td>
           <td  *ngIf="rep.dateFin !== undefined">
             {{rep.dateFin}}
+          </td>
+          <td class="text-center">
+            {{rep.quantite}}
           </td>
           <td >
             {{rep.prix}} Ar
