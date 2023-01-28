@@ -33,10 +33,10 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let rep of reparationVoitureService.voiture.reparation">
-                    <td *ngIf="rep.paye == 0">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2">
                       {{rep.daty}}
                     </td>
-                    <td *ngIf="rep.paye == 0">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2">
                       <div *ngIf="rep.dateFin === undefined">
                         ---
                       </div>
@@ -44,16 +44,16 @@
                         {{rep.dateFin}}
                       </div>
                     </td>
-                    <td *ngIf="rep.paye == 0">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2">
                       {{rep.type}}
                     </td>
-                    <td *ngIf="rep.paye == 0" class="text-center">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2" class="text-center">
                       {{rep.quantite}}
                     </td>
-                    <td *ngIf="rep.paye == 0">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2">
                       {{rep.prix}} Ar
                     </td>
-                    <td *ngIf="rep.paye == 0">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2">
                       <div *ngIf="rep.etat == 0">
                         <i class="now-ui-icons ui-1_simple-remove"></i>
                       </div>
@@ -61,7 +61,7 @@
                         <i class="now-ui-icons ui-1_check"></i>
                       </div>
                     </td>
-                    <td *ngIf="rep.paye == 0">
+                    <td *ngIf="rep.paye == 0 && rep.etat < 2">
                       <button class="btn btn-primary btn-block" (click)="terminer(rep.daty,rep.type)" style="width: 100px;">Terminer</button>
                     </td>
                   </tr>

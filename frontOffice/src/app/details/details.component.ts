@@ -43,9 +43,11 @@ export class DetailsComponent implements OnInit {
               revV.numero = d.numero;
               revV.diagnostique = d.diagnostique;
               revV.reparation = d.reparation;
+              console.log(d.reparation.length);
               if(d.reparation !== undefined) {
                 var yes = 0;
                 var no = 0;
+                console.log(d.reparation.length);
                 for(var k = 0; k< d.reparation.length; k++) {
                   var rep = d.reparation[k];
                     if(rep.etat == 1) { yes++; }

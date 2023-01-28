@@ -62,7 +62,6 @@
                 </div>
                 <div class="mt-4">
                     <div class="row text-600 text-white bgc-default-tp1 py-25">
-                        <div class="d-none d-sm-block col-1">#</div>
                         <div class="col-9 col-sm-3">Description</div>
                         <div class="d-none d-sm-block col-4 col-sm-2">Quantité</div>
                         <div class="d-none d-sm-block col-4 col-sm-2">Prix</div>
@@ -71,11 +70,10 @@
                     </div>
                     <div class="text-95 text-secondary-d3">
                         <div class="row mb-2 mb-sm-0 py-25" *ngFor="let reparation of reparationVoitureService.facture.voiture.reparation ; let iteration = index ">
-                            <div class="d-none d-sm-block col-1">{{iteration+1}}</div>
-                            <div class="col-9 col-sm-3">{{reparation.type}}</div>
-                            <div class="d-none d-sm-block col-2">{{reparation.quantite}}</div>
-                            <div class="d-none d-sm-block col-2">{{reparation.prix}} Ar</div>
-                            <div class="d-none d-sm-block col-2 text-95">
+                            <div class="col-9 col-sm-3" *ngIf="reparation.etat != 2">{{reparation.type}}</div>
+                            <div class="d-none d-sm-block col-2" *ngIf="reparation.etat != 2">{{reparation.quantite}}</div>
+                            <div class="d-none d-sm-block col-2" *ngIf="reparation.etat != 2">{{reparation.prix}} Ar</div>
+                            <div class="d-none d-sm-block col-2 text-95" *ngIf="reparation.etat != 2">
                                 <div *ngIf="reparation.etat == 0">
                                     <img src="../assets/uncheck-icon-17.jpg" style="width: 30px; height: 30px;"/>
                                 </div>
@@ -83,7 +81,7 @@
                                     <img src="../assets/5aa78e207603fc558cffbf19.png" style="width: 30px; height: 30px;"/>
                                 </div>
                             </div>
-                            <div class="col-2 text-secondary-d2">
+                            <div class="col-2 text-secondary-d2" *ngIf="reparation.etat != 2">
                                 <div *ngIf="reparation.paye == 0">
                                     <img src="../assets/uncheck-icon-17.jpg" style="width: 30px; height: 30px;"/>
                                 </div>

@@ -8,7 +8,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col"> Type de réparation</th>
           <th scope="col">Date début</th>
           <th scope="col">Date fin</th>
@@ -19,22 +18,21 @@
       </thead>
       <tbody>
         <tr *ngFor="let rep of reparationVoitureService.voiture.reparation ; let iteration = index  ">
-          <th scope="row">{{iteration+1}}</th>
-          <td>{{rep.type}}</td>
-          <td> {{rep.daty}}</td>
-          <td *ngIf="rep.dateFin === undefined">
+          <td *ngIf="rep.etat != 2">{{rep.type}}</td>
+          <td *ngIf="rep.etat != 2"> {{rep.daty}}</td>
+          <td *ngIf="rep.dateFin === undefined && rep.etat != 2">
             ---
           </td>
-          <td  *ngIf="rep.dateFin !== undefined">
+          <td  *ngIf="rep.dateFin !== undefined && rep.etat != 2">
             {{rep.dateFin}}
           </td>
-          <td class="text-center">
+          <td class="text-center" *ngIf="rep.etat != 2">
             {{rep.quantite}}
           </td>
-          <td >
+          <td *ngIf="rep.etat != 2">
             {{rep.prix}} Ar
           </td>
-          <td >
+          <td *ngIf="rep.etat != 2">
             <div *ngIf="rep.etat == 0">
                 <img src="../assets/uncheck-icon-17.jpg" style="width: 30px; height: 30px;"/>
             </div>

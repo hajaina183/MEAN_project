@@ -68,7 +68,6 @@ export class ValiderSortieComponent implements OnInit {
       voiture.numero = numero;
       this.reparationVoitureService.validerSortie(voiture).subscribe((res) => {
         if(res) {
-          console.log("res : "+res);
           this.getReparations();
         }
       });

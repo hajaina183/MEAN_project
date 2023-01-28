@@ -116,7 +116,7 @@ export class DiagnostiqueComponent implements OnInit {
           var signe = 0;
           for(var i = 0, l = this.reparationVoitureService.voiture.reparation.length; i < l; i++) {
             var rep = this.reparationVoitureService.voiture.reparation[i];
-            if(rep.type == this.typeRep && rep.prix == this.prixRep) {
+            if(rep.type == this.typeRep && rep.prix == this.prixRep && rep.etat == 0) {
               signe = 1;
               this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Reparation '+this.typeRep+' en cours', '', {
                 timeOut: 8000,

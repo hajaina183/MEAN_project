@@ -365,7 +365,7 @@ router.put('/recupererVoiture', async (req, res) => {
             console.log(err);
         }
         else{
-            return res.status(200).send({message : 'Car diagnostic state updated !'});
+            return res.status(200).send({message : 'Demande de récupération envoyer'});
         }
     });
 });
@@ -413,10 +413,18 @@ router.put('/validerSortie',async (req,res) => {
     };
     const updateDoc = {
         $set:{
-            "voiture.$.diagnostique": 0
+            "voiture.$.diagnostique": 0,
+            "voiture.$.reparation.$[element].etat": 2
         },
     };
-    ReparationVoiture.updateOne(filter, updateDoc, function (err, docs) {
+    const arrayfiltre = {
+        arrayFilters: [
+            {
+                "element.etat": 1
+            } 
+        ]
+    }
+    ReparationVoiture.updateOne(filter, updateDoc, arrayfiltre, function (err, docs) {
         if (err){
             res.send(err);
         } else {
