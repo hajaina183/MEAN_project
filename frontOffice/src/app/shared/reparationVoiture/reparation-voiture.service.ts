@@ -58,6 +58,10 @@ export class ReparationVoitureService {
     return this.http.put(this.baseURL + `/depanage`,voiture);
   }
 
+  recupererVoiture(voiture : Voiture) {
+    return this.http.put(this.baseURL + '/recupererVoiture', {...voiture, emailUser : localStorage.getItem('email')});
+  }
+
   terminerReparation(voiture: Voiture,date: string,type: string) {
     return this.http.put(this.baseURL + `/terminerReparation/${date}/${type}`, voiture);
   }

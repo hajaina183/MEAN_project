@@ -345,19 +345,19 @@ router.put('/recupererVoiture', async (req, res) => {
         }
     ]
     const result = await ReparationVoiture.aggregate(query);
-    if (result.length == 0) return res.status(400).send('Car not found !');
+    if (result.length == 0) return res.status(400).send({message : 'Car not found !'});
     const reparationList = result[0]?.voiture?.reparation;
-    if (reparationList && reparationList?.length == 0) return res.status(400).send('there is no reparation for this car !');
-    if (result[0]?.voiture?.dateRecuperation) return res.status(200).send('Car already recupered !');
+    if (reparationList && reparationList?.length == 0) return res.status(400).send({message : 'there is no reparation for this car !'});
+    if (result[0]?.voiture?.dateRecuperation) return res.status(200).send({message : 'Car already recupered !'});
     for (const reparation of reparationList) {
         if (!reparation?.paye || reparation?.paye != 2) {
-            return res.status(200).send('can you all pay your bill ? Thanks');
+            return res.status(200).send({message : 'can you all pay your bill ? Thanks'});
         }
     }
     const filter = { "voiture.modele": req.body.modele, "voiture.numero": req.body.numero };
     const updateDiagnosticToRecup = {
         $set:{
-            "voiture.$.diagnostique": 2,
+            "voiture.$.diagnostique": 3,
         },
     };
     ReparationVoiture.updateOne(filter, updateDiagnosticToRecup, function (err, docs) {
@@ -365,7 +365,7 @@ router.put('/recupererVoiture', async (req, res) => {
             console.log(err);
         }
         else{
-            return res.status(200).send('Car diagnostic state updated !');
+            return res.status(200).send({message : 'Car diagnostic state updated !'});
         }
     });
 });

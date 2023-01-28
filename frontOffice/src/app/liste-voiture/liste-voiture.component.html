@@ -56,8 +56,8 @@
           <td>
             <a [routerLink]="['/historique']" [queryParams]="{ modele: voiture.modele, numero: voiture.numero}">Voir historique</a>
           </td>
-          <td *ngIf=" voiture.pourcentage == 100">
-            <button class="btn btn-light" (click)="depanner(voiture.modele, voiture.numero)">
+          <td *ngIf="voiture.pourcentage == 100 && voiture.diagnostique != 3">
+            <button class="btn btn-light" (click)="recuperer(voiture.modele, voiture.numero)">
               <span>Récupérer</span>
             </button>
           </td>

@@ -5,6 +5,8 @@ import { ReparationVoiture } from '../shared/reparationVoiture/reparationVoiture
 import { ReparationVoitureService } from '../shared/reparationVoiture/reparation-voiture.service';
 import { Voiture } from '../shared/reparationVoiture/voiture.model';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-liste-voiture',
@@ -22,7 +24,7 @@ export class ListeVoitureComponent implements OnInit {
   numero!: string;
   voitureList: any = [];
 
-  constructor(public reparationVoitureService: ReparationVoitureService,private router: Router,private route: ActivatedRoute,) { }
+  constructor(public reparationVoitureService: ReparationVoitureService,private router: Router,private route: ActivatedRoute,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.listeVoiture();
@@ -82,6 +84,23 @@ export class ListeVoitureComponent implements OnInit {
     });
   }
 
+  recuperer(modele,numero){
+    //console.log("depanner : "+modele);
+    var recupVoiture = new Voiture();
+    
+    //console.log("modele "+modele);
+    recupVoiture.modele = modele;
+    //console.log("numero "+numero);
+    recupVoiture.numero = numero;
+    this.reparationVoitureService.recupererVoiture(recupVoiture).subscribe((res:any) => {
+      if(res) {
+        console.log(res);
+        this.showToast(res?.message)
+        this.listeVoiture();
+      }
+    });
+  }
+
   chercher(){
     this.reparationVoitureService.voitures = [];
     var voiture = new Voiture();
@@ -111,6 +130,16 @@ export class ListeVoitureComponent implements OnInit {
         
       }
       
+    });
+  }
+
+  showToast(message){
+    this.toastr.success(`<span class="now-ui-icons ui-1_bell-53">${message}</span> `, '', {
+      timeOut: 8000,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert",
+      positionClass: 'toast-bottom-center'
     });
   }
 
