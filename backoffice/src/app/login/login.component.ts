@@ -50,9 +50,9 @@ export class LoginComponent implements OnInit {
         console.log(adminLS._id); */
 
         if(this.adminResponse.grade == 0) { // atelier
-          this.router.navigate(['../voiture-diagnostique']);
+          this.router.navigate(['../statistique']);
         } else if(this.adminResponse.grade == 1) { // financier
-          this.router.navigate(['../user-profile']);
+          this.router.navigate(['../statistique']);
         }
       } else {
         //alert("Compte introuvable");
