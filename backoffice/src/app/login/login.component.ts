@@ -24,6 +24,13 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    // atelier
+    this.email = "mamy.atelier@gmail.com";
+    this.mdp = "mamy";
+
+    // finance
+    // this.email = "ravaka.financier@gmail.com";
+    // this.mdp = "ravaka";
   }
 
   traitementLogin() {

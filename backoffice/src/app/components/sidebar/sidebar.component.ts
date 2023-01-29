@@ -39,7 +39,6 @@ export class SidebarComponent implements OnInit {
     if(adminLS.grade == 1) {
       //ROUTES.splice(8,2);
       const routeMenu: RouteInfo[] = [
-        { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
         { path: '/statistique', title: 'Tableau de bord',  icon: 'design_app', class: '' },
         { path: '/depense', title: 'Depense',  icon:'users_single-02', class: '' },
         { path: '/valider-paiement', title: 'Valider paiement',  icon:'design_bullet-list-67', class: '' }
@@ -49,7 +48,6 @@ export class SidebarComponent implements OnInit {
     } else if(adminLS.grade == 0) {
       //ROUTES.splice(5,2);
       const routeMenu: RouteInfo[] = [
-        { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
         { path: '/statistique', title: 'Tableau de bord',  icon: 'design_app', class: '' },
         { path: '/voiture-diagnostique', title: 'Voiture List',  icon:'design_bullet-list-67', class: '' },
         { path: '/voiture-garage', title: 'Garage List',  icon:'design_bullet-list-67', class: '' },

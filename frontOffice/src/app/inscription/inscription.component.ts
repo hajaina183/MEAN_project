@@ -5,7 +5,7 @@ import { ClientService } from '../shared/client/client.service';
 import { Client } from '../shared/client/client.model';
 import { ReparationVoiture } from '../shared/reparationVoiture/reparationVoiture.model';
 import { ReparationVoitureService } from '../shared/reparationVoiture/reparation-voiture.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscription',
@@ -24,9 +24,16 @@ export class InscriptionComponent implements OnInit {
   email!: string;
   mdp!: string;
   clientResponse!: any;
-  constructor(private clientService: ClientService,private reparationVoitureService: ReparationVoitureService, private router: Router) { }
+  constructor(
+    private clientService: ClientService,
+    private reparationVoitureService: ReparationVoitureService, 
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
+    this.email = "hajainarafenoherilala@gmail.com";
+    this.mdp = "hajaina";
   }
 
   traitementIscription() {
@@ -85,9 +92,27 @@ export class InscriptionComponent implements OnInit {
         //console.log(this.clientResponse._id);
         this.router.navigate(['../liste-voiture']);
       } else {
-        alert("Compte introuvable")
+        //.showToast("Compte introuvable");
+        /*this.toastr.error('<span class="now-ui-icons ui-1_bell-53"></span> Compte introuvable', '', {
+          timeOut: 8000,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: "alert alert-danger alert-with-icon",
+          positionClass: 'toast-top-center'
+        });*/
+        alert("Compte introuvable");
       }
     })
+  }
+
+  showToast(message){
+    this.toastr.success(`<span class="now-ui-icons ui-1_bell-53">${message}</span> `, '', {
+      timeOut: 8000,
+      closeButton: true,
+      enableHtml: true,
+      toastClass: "alert",
+      positionClass: 'toast-bottom-center'
+    });
   }
 
 }
